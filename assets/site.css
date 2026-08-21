@@ -127,7 +127,7 @@
      auf Top-Ausrichtung mit kleiner Box umstellen, Desktop bleibt zentriert. */
   @media (max-width: 640px) {
     .hero {
-      min-height: 100svh;
+      min-height: calc(100svh + 260px);
       align-items: flex-start;
       padding-top: 56px;
     }
