@@ -108,7 +108,7 @@
     color: #FFF;
     overflow: hidden;
     padding: 72px 0 96px;
-    min-height: calc(100dvh + 260px);
+    min-height: calc(100svh + 260px); /* svh statt dvh: dvh aendert sich live, waehrend Safari mobil die Adressleiste beim Scrollen ein-/ausblendet, das erzwingt Reflow/Flackern auf jedem Scroll-Tick */
     display: flex;
     align-items: center;
   }
@@ -121,6 +121,17 @@
     pointer-events: none;
   }
   @media (max-width: 620px) { .hero::after { height: 140px; } }
+  /* Auf Mobile sitzt der vertikal zentrierte Inhalt in der (bewusst ueber-
+     hohen) Hero-Box spuerbar unterhalb des ersten sichtbaren Screens -
+     Logo/Headline sollen aber sofort ohne Scrollen sichtbar sein. Nur hier
+     auf Top-Ausrichtung mit kleiner Box umstellen, Desktop bleibt zentriert. */
+  @media (max-width: 640px) {
+    .hero {
+      min-height: 100svh;
+      align-items: flex-start;
+      padding-top: 56px;
+    }
+  }
   .hero-arcs {
     position: absolute;
     inset: 0;

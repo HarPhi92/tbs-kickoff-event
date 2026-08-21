@@ -452,13 +452,34 @@
     });
   }
 
-  // Timeline-Linie: Fortschritt synchron zum Scrollen durch das Programm
-  // einfärben. Jeder Programmpunkt wird erst "aktiv" (eingeblendet), sobald
-  // die Linie auf seiner Höhe angekommen ist, statt einfach beim Eintreten
-  // in den Viewport (siehe .stop/.stop.active in site.css).
+  // Programmpunkte werden per IntersectionObserver aktiviert (gleiche Technik
+  // wie .reveal), unabhängig von der Timeline-Linie. Vorher hing die
+  // Aktivierung an der Linien-Fortschrittsberechnung weiter unten - auf
+  // Mobile ist die Linie aber per CSS ausgeblendet (.journey-thread,
+  // @max-width:640px, da ihre Kurve für die zweispaltige Desktop-Anordnung
+  // gebaut ist), trotzdem lief die Berechnung im Hintergrund weiter und hinkte
+  // dem echten Scrollfortschritt massiv hinterher -> Punkte erschienen in
+  // falscher Reihenfolge/viel zu spät.
+  var stopEls = Array.prototype.slice.call(document.querySelectorAll('.stop'));
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    var stopIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          stopIo.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    stopEls.forEach(function (el) { stopIo.observe(el); });
+  } else {
+    stopEls.forEach(function (el) { el.classList.add('active'); });
+  }
+
+  // Timeline-Linie bleibt rein dekorativ (nur ab 641px sichtbar) und zeichnet
+  // sich weiterhin synchron zum Scrollen, hat aber keinen Einfluss mehr
+  // darauf, wann Programmpunkte erscheinen.
   var lineProgress = document.getElementById('journey-line-progress');
   var programmBody = document.querySelector('.programm-body');
-  var stopEls = Array.prototype.slice.call(document.querySelectorAll('.stop'));
 
   if (lineProgress && programmBody && !reduceMotion) {
     var lineLength = lineProgress.getTotalLength();
@@ -474,19 +495,6 @@
       var scrolled = vh * 0.8 - rect.top;
       var progress = Math.min(1, Math.max(0, scrolled / total));
       lineProgress.style.strokeDashoffset = lineLength * (1 - progress);
-
-      // Ein Stop wird exakt dann aktiviert, wenn die vordere Kante der
-      // gezeichneten Linie (dieselbe progress-Berechnung wie für den
-      // Dashoffset oben) seine eigene Höhe erreicht hat - dadurch bleiben
-      // Linie und Programmpunkt visuell synchron statt zeitversetzt.
-      var lineFrontY = rect.top + rect.height * progress;
-      stopEls.forEach(function (el) {
-        var stopRect = el.getBoundingClientRect();
-        var stopMid = stopRect.top + stopRect.height * 0.25;
-        if (stopMid <= lineFrontY) {
-          el.classList.add('active');
-        }
-      });
     }
     function onScroll() {
       if (!tickScheduled) {
@@ -497,9 +505,8 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
     updateLineProgress();
-  } else {
-    if (lineProgress) lineProgress.style.display = 'none';
-    stopEls.forEach(function (el) { el.classList.add('active'); });
+  } else if (lineProgress) {
+    lineProgress.style.display = 'none';
   }
 </script>
 
