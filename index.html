@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kick-Off Event der Therapie Business School · 23. Oktober 2026 · Kevelaer</title>
+<meta name="description" content="Der offizielle Start der Therapie Business School: Kick-Off Event am 23. Oktober 2026 in Kevelaer. Jetzt anmelden.">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kick-Off Event der Therapie Business School · 23. Oktober 2026 · Kevelaer">
+<meta property="og:description" content="Der offizielle Start der Therapie Business School: Kick-Off Event am 23. Oktober 2026 in Kevelaer. Jetzt anmelden.">
+<meta property="og:image" content="og-image.jpg">
+<meta property="og:locale" content="de_DE">
+<meta name="twitter:card" content="summary_large_image">
+<!-- TODO Phillip/Nick: og-image.jpg (1200x630) muss noch erstellt und neben dieser Datei abgelegt werden, sonst zeigt die Link-Vorschau nichts an. -->
+
+<!-- Favicon: eingebettetes TBS-Signet-SVG aus dem Branding Guide §2.2 als Inline-Data-URI, da keine favicon.ico/.png-Dateien lokal vorliegen -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%23051D45'/%3E%3Cg transform='translate(76.00,198.80) scale(1.04197)'%3E%3Cpath d='M319.54,57.88c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03v-51.91h85.03Z' fill='%23FFF'/%3E%3Cpath d='M202.58,57.88c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03v-51.91h85.03,0Z' fill='%23FFF'/%3E%3Cpath d='M110.36,109.79H.03c.94-29.08,24.3-52.43,53.38-53.38,30.47-.99,55.97,22.91,56.96,53.38h0Z' fill='%23FFF'/%3E%3Cpath d='M260.46,51.91c-14.34,0-25.96-11.62-25.96-25.96S246.13,0,260.46,0h85.03v51.91h-85.03Z' fill='%23FFF'/%3E%3Cpath d='M202.58,0c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03V0h85.03Z' fill='%23FFF'/%3E%3Crect width='110.39' height='51.91' fill='%23FFF'/%3E%3C/g%3E%3C/svg%3E">
+
+<!-- Montserrat (Pflicht laut TBS-Branding-Guide §4 – ohne diesen Link rendert die Seite in Arial) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/site.css">
+
+<!-- Hero und Inhalte starten per CSS unsichtbar (opacity:0) und werden erst durch das
+     Reveal-Script am Seitenende eingeblendet. Läuft JS nicht (z.B. iOS-Dateivorschau
+     "Quick Look" statt "In Safari öffnen", JS deaktiviert), bliebe die Seite sonst
+     komplett leer - dieser Fallback erzwingt volle Sichtbarkeit ohne JS. -->
+<noscript>
+<style>
+  /* Reine CSS-Animation (läuft ohne JS beim Laden ab) statt der sonstigen
+     JS-getriggerten Scroll-Reveals - Inhalt landet garantiert sichtbar,
+     unabhängig von der Scrollposition beim Laden. */
+  .hero-eyebrow, .hero h1, .hero-kickoff-title, .hero-sub, .hero-ctas,
+  .page-intro h1, .reveal, .stop {
+    animation: noscript-rise .8s cubic-bezier(.16,1,.3,1) both !important;
+  }
+  @keyframes noscript-rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: none; }
+  }
+  /* WebGL-Gradient (.hero-gl) rendert ohne JS nicht - statischen SVG-Arc-
+     Hintergrund als Ersatz wieder einblenden statt flacher Navy-Fläche. */
+  .hero-gl { display: none !important; }
+  .hero-arcs { display: block !important; }
+</style>
+</noscript>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="wrap">
+    <a class="nav-logo" href="#top" aria-label="Kick-Off Event der Therapie Business School, nach oben">
+      <!-- Wortmarke weiß, eingebettet gemäß Branding Guide §2.2 -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 571.58 109.79" role="img" aria-label="TBS – Therapie Business School">
+        <path d="M319.54,57.88c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03v-51.91h85.03Z" fill="#FFF"/>
+        <path d="M202.58,57.88c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03v-51.91h85.03Z" fill="#FFF"/>
+        <path d="M110.36,109.79H.03c.94-29.08,24.3-52.43,53.38-53.38,30.47-.99,55.97,22.91,56.96,53.38Z" fill="#FFF"/>
+        <path d="M260.46,51.91c-14.34,0-25.96-11.62-25.96-25.96S246.13,0,260.46,0h85.03v51.91h-85.03Z" fill="#FFF"/>
+        <path d="M202.58,0C216.92,0,228.54,11.62,228.54,25.96s-11.62,25.96-25.96,25.96h-85.03V0h85.03Z" fill="#FFF"/>
+        <rect y="0" width="110.39" height="51.91" fill="#FFF"/>
+        <path d="M389.01,28.1V4.68h-9.17V1.35h22.12v3.32h-9.17v23.42h-3.78Z" fill="#FFF"/>
+        <polygon points="428.35 1.36 428.35 28.1 424.54 28.1 424.54 16.18 409.18 16.18 409.18 28.1 405.36 28.1 405.36 1.36 409.18 1.36 409.18 12.85 424.54 12.85 424.54 1.36 428.35 1.36" fill="#FFF"/>
+        <polygon points="455.03 24.77 455.03 28.1 435.61 28.1 435.61 1.36 454.49 1.36 454.49 4.68 439.43 4.68 439.43 12.89 452.84 12.89 452.84 16.14 439.43 16.14 439.43 24.77 455.03 24.77" fill="#FFF"/>
+        <path d="M476.14,19.13c.24-.08.49-.18.72-.28,1.66-.73,2.93-1.8,3.82-3.19.89-1.38,1.34-3.05,1.34-4.98s-.44-3.61-1.34-5.01c-.89-1.4-2.17-2.47-3.82-3.21-1.65-.73-3.65-1.1-6-1.1h-10.42v26.74h3.81v-8.13h6.61c.59,0,1.16-.03,1.7-.07l5.75,8.2h4.16l-6.35-8.96ZM470.76,16.71h-6.5V4.68h6.5c2.45,0,4.3.52,5.56,1.56,1.26,1.05,1.88,2.52,1.88,4.43s-.62,3.39-1.88,4.44c-1.26,1.06-3.12,1.59-5.56,1.59Z" fill="#FFF"/>
+        <path d="M499.3,1.36h-3.78l-12.12,26.74h3.94l2.94-6.68h14.22l2.94,6.68h4.02l-12.16-26.74ZM491.62,18.35l5.76-13.12,5.76,13.12h-11.52Z" fill="#FFF"/>
+        <path d="M534.9,5.67c-.89-1.4-2.17-2.47-3.82-3.21-1.66-.73-3.65-1.1-6-1.1h-10.43v26.74h3.82v-8.1h6.61c2.34,0,4.34-.38,6-1.13,1.66-.75,2.93-1.82,3.82-3.21.89-1.38,1.34-3.05,1.34-4.98s-.44-3.61-1.34-5.01ZM530.53,15.1c-1.26,1.05-3.11,1.57-5.55,1.57h-6.5V4.68h6.5c2.45,0,4.29.52,5.55,1.56s1.89,2.52,1.89,4.43-.63,3.38-1.89,4.43Z" fill="#FFF"/>
+        <path d="M541.09,28.1V1.35h3.82v26.74h-3.82Z" fill="#FFF"/>
+        <polygon points="571.58 24.77 571.58 28.1 552.17 28.1 552.17 1.36 571.04 1.36 571.04 4.68 555.99 4.68 555.99 12.89 569.4 12.89 569.4 16.14 555.99 16.14 555.99 24.77 571.58 24.77" fill="#FFF"/>
+        <path d="M405.66,57.35c-.69-1.04-1.61-1.82-2.79-2.35-.39-.18-.79-.32-1.21-.43,0,0,.02-.02.03-.02,1.1-.54,1.97-1.3,2.62-2.3.65-.99.98-2.21.98-3.66,0-2.15-.83-3.83-2.49-5.07s-4.02-1.85-7.11-1.85h-11.99v26.74h12.76c3.39,0,5.94-.62,7.66-1.88,1.72-1.26,2.58-3.04,2.58-5.33,0-1.53-.35-2.82-1.04-3.84ZM387.52,44.76h7.83c1.93,0,3.44.36,4.5,1.06,1.07.72,1.61,1.79,1.61,3.21s-.54,2.5-1.61,3.21c-1.06.72-2.57,1.07-4.5,1.07h-7.83v-8.56ZM401.15,64.24c-1.12.72-2.73,1.07-4.85,1.07h-8.78v-8.91h8.78c2.12,0,3.73.36,4.85,1.07,1.13.72,1.69,1.85,1.69,3.4s-.56,2.66-1.69,3.36Z" fill="#FFF"/>
+        <path d="M422.93,68.71c-3.51,0-6.28-1.01-8.29-3.02-2.01-2.01-3.02-4.95-3.02-8.82v-15.21h3.82v15.05c0,2.98.66,5.16,1.97,6.53s3.16,2.06,5.56,2.06,4.28-.69,5.6-2.06c1.31-1.38,1.97-3.55,1.97-6.53v-15.05h3.71v15.21c0,3.87-1,6.81-3,8.82s-4.77,3.02-8.31,3.02Z" fill="#FFF"/>
+        <path d="M449.1,68.71c-2.04,0-3.99-.31-5.84-.94-1.86-.62-3.32-1.43-4.39-2.43l1.41-2.98c1.02.89,2.32,1.63,3.9,2.22,1.58.59,3.22.88,4.93.88,1.55,0,2.81-.18,3.78-.54s1.68-.85,2.14-1.47c.46-.62.69-1.33.69-2.12,0-.92-.3-1.66-.9-2.22-.6-.56-1.38-1.01-2.33-1.36s-2.01-.64-3.15-.9c-1.15-.25-2.3-.55-3.46-.9-1.16-.34-2.22-.78-3.17-1.32-.95-.53-1.73-1.25-2.31-2.16-.59-.9-.88-2.07-.88-3.5s.36-2.64,1.09-3.8c.73-1.16,1.85-2.09,3.36-2.79,1.52-.7,3.44-1.05,5.79-1.05,1.55,0,3.09.2,4.62.61,1.53.41,2.85.99,3.97,1.76l-1.26,3.06c-1.15-.76-2.36-1.32-3.63-1.66-1.27-.34-2.51-.52-3.71-.52-1.5,0-2.74.19-3.71.57-.97.38-1.68.89-2.12,1.53-.45.64-.67,1.35-.67,2.14,0,.94.3,1.69.9,2.25.6.56,1.38,1.01,2.33,1.34.96.33,2.01.63,3.15.9,1.15.27,2.3.57,3.46.9,1.16.33,2.22.76,3.17,1.3.95.54,1.72,1.25,2.31,2.14.59.89.88,2.04.88,3.44s-.37,2.6-1.11,3.76c-.74,1.16-1.88,2.09-3.42,2.79s-3.48,1.05-5.83,1.05Z" fill="#FFF"/>
+        <path d="M464.27,68.41v-26.74h3.82v26.74h-3.82Z" fill="#FFF"/>
+        <polygon points="498.35 41.66 498.35 68.4 495.21 68.4 479.17 48.48 479.17 68.4 475.34 68.4 475.34 41.66 478.48 41.66 494.52 61.59 494.52 41.66 498.35 41.66" fill="#FFF"/>
+        <polygon points="525.01 65.08 525.01 68.4 505.6 68.4 505.6 41.66 524.47 41.66 524.47 44.99 509.42 44.99 509.42 53.21 522.83 53.21 522.83 56.44 509.42 56.44 509.42 65.08 525.01 65.08" fill="#FFF"/>
+        <path d="M538.23,68.71c-2.04,0-3.99-.31-5.84-.94-1.86-.62-3.32-1.43-4.39-2.43l1.41-2.98c1.02.89,2.32,1.63,3.9,2.22,1.58.59,3.22.88,4.93.88,1.55,0,2.81-.18,3.78-.54s1.68-.85,2.14-1.47c.46-.62.69-1.33.69-2.12,0-.92-.3-1.66-.9-2.22-.6-.56-1.38-1.01-2.33-1.36s-2.01-.64-3.15-.9c-1.15-.25-2.3-.55-3.46-.9-1.16-.34-2.22-.78-3.17-1.32-.95-.53-1.73-1.25-2.31-2.16-.59-.9-.88-2.07-.88-3.5s.36-2.64,1.09-3.8c.73-1.16,1.85-2.09,3.36-2.79,1.52-.7,3.44-1.05,5.79-1.05,1.55,0,3.09.2,4.62.61,1.53.41,2.85.99,3.97,1.76l-1.26,3.06c-1.15-.76-2.36-1.32-3.63-1.66-1.27-.34-2.51-.52-3.71-.52-1.5,0-2.74.19-3.71.57-.97.38-1.68.89-2.12,1.53-.45.64-.67,1.35-.67,2.14,0,.94.3,1.69.9,2.25.6.56,1.38,1.01,2.33,1.34.96.33,2.01.63,3.15.9,1.15.27,2.3.57,3.46.9,1.16.33,2.22.76,3.17,1.3.95.54,1.72,1.25,2.31,2.14.59.89.88,2.04.88,3.44s-.37,2.6-1.11,3.76c-.74,1.16-1.88,2.09-3.42,2.79s-3.48,1.05-5.83,1.05Z" fill="#FFF"/>
+        <path d="M561.19,68.71c-2.04,0-3.99-.31-5.84-.94-1.86-.62-3.32-1.43-4.39-2.43l1.41-2.98c1.02.89,2.32,1.63,3.9,2.22,1.58.59,3.22.88,4.93.88,1.55,0,2.81-.18,3.78-.54s1.68-.85,2.14-1.47c.46-.62.69-1.33.69-2.12,0-.92-.3-1.66-.9-2.22-.6-.56-1.38-1.01-2.33-1.36s-2.01-.64-3.15-.9c-1.15-.25-2.3-.55-3.46-.9-1.16-.34-2.22-.78-3.17-1.32-.95-.53-1.73-1.25-2.31-2.16-.59-.9-.88-2.07-.88-3.5s.36-2.64,1.09-3.8c.73-1.16,1.85-2.09,3.36-2.79,1.52-.7,3.44-1.05,5.79-1.05,1.55,0,3.09.2,4.62.61,1.53.41,2.85.99,3.97,1.76l-1.26,3.06c-1.15-.76-2.36-1.32-3.63-1.66-1.27-.34-2.51-.52-3.71-.52-1.5,0-2.74.19-3.71.57-.97.38-1.68.89-2.12,1.53-.45.64-.67,1.35-.67,2.14,0,.94.3,1.69.9,2.25.6.56,1.38,1.01,2.33,1.34.96.33,2.01.63,3.15.9,1.15.27,2.3.57,3.46.9,1.16.33,2.22.76,3.17,1.3.95.54,1.72,1.25,2.31,2.14.59.89.88,2.04.88,3.44s-.37,2.6-1.11,3.76c-.74,1.16-1.88,2.09-3.42,2.79s-3.48,1.05-5.83,1.05Z" fill="#FFF"/>
+        <path d="M391.49,109.02c-2.04,0-3.99-.31-5.84-.94-1.86-.62-3.32-1.43-4.39-2.43l1.41-2.98c1.02.89,2.32,1.63,3.9,2.22,1.58.59,3.22.88,4.93.88,1.55,0,2.81-.18,3.78-.54s1.68-.85,2.14-1.47c.46-.62.69-1.33.69-2.12,0-.92-.3-1.66-.9-2.22-.6-.56-1.38-1.01-2.33-1.36s-2.01-.64-3.15-.9c-1.15-.25-2.3-.55-3.46-.9-1.16-.34-2.22-.78-3.17-1.32-.95-.54-1.73-1.25-2.31-2.16-.59-.9-.88-2.07-.88-3.49s.36-2.64,1.09-3.8c.73-1.16,1.85-2.09,3.36-2.79,1.52-.7,3.44-1.05,5.79-1.05,1.55,0,3.09.2,4.62.61,1.53.41,2.85.99,3.97,1.76l-1.26,3.06c-1.15-.76-2.36-1.32-3.63-1.66-1.27-.34-2.51-.52-3.71-.52-1.5,0-2.74.19-3.71.57-.97.38-1.68.89-2.12,1.53-.45.64-.67,1.35-.67,2.14,0,.94.3,1.69.9,2.25s1.38,1.01,2.33,1.34,2.01.63,3.15.9c1.15.27,2.3.57,3.46.9,1.16.33,2.22.76,3.17,1.3.95.53,1.72,1.25,2.31,2.14.59.89.88,2.04.88,3.44s-.37,2.6-1.11,3.76c-.74,1.16-1.88,2.09-3.42,2.79s-3.48,1.05-5.83,1.05Z" fill="#FFF"/>
+        <path d="M418.62,109.02c-2.04,0-3.92-.34-5.64-1.01-1.72-.67-3.21-1.63-4.47-2.87-1.26-1.23-2.25-2.68-2.96-4.34-.71-1.66-1.07-3.48-1.07-5.46s.36-3.81,1.07-5.46c.71-1.66,1.71-3.1,2.98-4.34,1.27-1.23,2.77-2.19,4.49-2.87s3.6-1.01,5.63-1.01,3.97.35,5.71,1.05c1.74.7,3.23,1.74,4.45,3.11l-2.48,2.41c-1.02-1.07-2.17-1.87-3.44-2.39-1.27-.52-2.64-.78-4.09-.78s-2.9.25-4.18.76c-1.29.51-2.4,1.22-3.34,2.14-.94.92-1.67,2.01-2.2,3.27s-.78,2.63-.78,4.11.26,2.85.78,4.11,1.25,2.35,2.2,3.27c.94.92,2.06,1.63,3.34,2.14,1.29.51,2.68.76,4.18.76s2.81-.26,4.09-.78,2.42-1.33,3.44-2.43l2.48,2.41c-1.22,1.38-2.71,2.42-4.45,3.13-1.74.71-3.66,1.07-5.75,1.07Z" fill="#FFF"/>
+        <polygon points="456.51 81.98 456.51 108.72 452.69 108.72 452.69 96.8 437.33 96.8 437.33 108.72 433.51 108.72 433.51 81.98 437.33 81.98 437.33 93.47 452.69 93.47 452.69 81.98 456.51 81.98" fill="#FFF"/>
+        <path d="M475.84,109.02c-2.04,0-3.93-.34-5.67-1.03-1.74-.69-3.25-1.65-4.53-2.88-1.27-1.24-2.27-2.68-2.98-4.34-.71-1.66-1.07-3.46-1.07-5.42s.36-3.77,1.07-5.43c.71-1.66,1.71-3.1,2.98-4.34,1.27-1.23,2.78-2.2,4.51-2.88,1.73-.69,3.63-1.03,5.69-1.03s3.92.34,5.63,1.01,3.22,1.63,4.51,2.87c1.29,1.24,2.28,2.68,2.98,4.34.7,1.66,1.05,3.48,1.05,5.46s-.35,3.81-1.05,5.46c-.7,1.66-1.69,3.1-2.98,4.34-1.29,1.24-2.79,2.19-4.51,2.87-1.72.68-3.6,1.01-5.63,1.01ZM475.84,105.62c1.48,0,2.85-.25,4.11-.76,1.26-.51,2.36-1.23,3.29-2.16s1.66-2.02,2.18-3.27c.52-1.25.78-2.61.78-4.09s-.26-2.84-.78-4.09c-.52-1.25-1.25-2.34-2.18-3.27-.93-.93-2.02-1.65-3.29-2.16s-2.63-.76-4.11-.76-2.88.25-4.15.76c-1.26.51-2.36,1.23-3.3,2.16-.94.93-1.67,2.02-2.2,3.27s-.78,2.61-.78,4.09.26,2.84.78,4.09c.52,1.25,1.25,2.34,2.2,3.27s2.04,1.65,3.3,2.16c1.26.51,2.64.76,4.15.76Z" fill="#FFF"/>
+        <path d="M507.17,109.02c-2.04,0-3.93-.34-5.67-1.03-1.74-.69-3.25-1.65-4.53-2.88-1.27-1.24-2.27-2.68-2.98-4.34-.71-1.66-1.07-3.46-1.07-5.42s.36-3.77,1.07-5.43c.71-1.66,1.71-3.1,2.98-4.34,1.27-1.23,2.78-2.2,4.51-2.88,1.73-.69,3.63-1.03,5.69-1.03s3.92.34,5.63,1.01,3.22,1.63,4.51,2.87c1.29,1.24,2.28,2.68,2.98,4.34.7,1.66,1.05,3.48,1.05,5.46s-.35,3.81-1.05,5.46c-.7,1.66-1.69,3.1-2.98,4.34-1.29,1.24-2.79,2.19-4.51,2.87-1.72.68-3.6,1.01-5.63,1.01ZM507.17,105.62c1.48,0,2.85-.25,4.11-.76,1.26-.51,2.36-1.23,3.29-2.16s1.66-2.02,2.18-3.27c.52-1.25.78-2.61.78-4.09s-.26-2.84-.78-4.09c-.52-1.25-1.25-2.34-2.18-3.27-.93-.93-2.02-1.65-3.29-2.16s-2.63-.76-4.11-.76-2.88.25-4.15.76c-1.26.51-2.36,1.23-3.3,2.16-.94.93-1.67,2.02-2.2,3.27s-.78,2.61-.78,4.09.26,2.84.78,4.09c.52,1.25,1.25,2.34,2.2,3.27s2.04,1.65,3.3,2.16c1.26.51,2.64.76,4.15.76Z" fill="#FFF"/>
+        <path d="M526.42,108.72v-26.74h3.82v23.42h14.48v3.32h-18.3Z" fill="#FFF"/>
+      </svg>
+    </a>
+    <div class="nav-links">
+      <a href="#anmeldung">Alle Infos</a>
+      <a href="#sichere-dir-deinen-platz" class="nav-cta">Sichere dir deinen Platz</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<div id="top"></div>
+<header class="hero reveal-hero">
+  <div class="hero-arcs" aria-hidden="true">
+    <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+      <circle cx="150" cy="120" r="420" fill="none" stroke="#D9C9A8" stroke-width="1.5" opacity=".18"/>
+      <circle cx="1080" cy="700" r="520" fill="none" stroke="#D9C9A8" stroke-width="1.5" opacity=".14"/>
+      <circle cx="1080" cy="700" r="360" fill="none" stroke="#FFFFFF" stroke-width="1" opacity=".08"/>
+    </svg>
+  </div>
+  <!-- TEST: Velaris WebGL-Gradient als Hero-Hintergrund, TBS Navy/Sand/Slate statt Standardfarben -->
+  <canvas class="hero-gl" id="hero-gl" aria-hidden="true"></canvas>
+  <div class="wrap hero-inner">
+    <div class="hero-wordmark" aria-hidden="true">
+      <svg class="hero-wordmark-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 345.5 109.8" role="img" aria-label="TBS Signet">
+        <path d="M319.54,57.88c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03v-51.91h85.03Z" fill="#FFF"/>
+        <path d="M202.58,57.88c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03v-51.91h85.03,0Z" fill="#FFF"/>
+        <path d="M110.36,109.79H.03c.94-29.08,24.3-52.43,53.38-53.38,30.47-.99,55.97,22.91,56.96,53.38h0Z" fill="#FFF"/>
+        <path d="M260.46,51.91c-14.34,0-25.96-11.62-25.96-25.96S246.13,0,260.46,0h85.03v51.91h-85.03Z" fill="#FFF"/>
+        <path d="M202.58,0c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03V0h85.03Z" fill="#FFF"/>
+        <rect width="110.39" height="51.91" fill="#FFF"/>
+      </svg>
+      <span class="hero-wordmark-text">Therapie Business School</span>
+    </div>
+    <span class="hero-eyebrow">23. Oktober 2026 · Kevelaer</span>
+    <h1 class="hero-kickoff-title">Kick-Off Event</h1>
+    <p class="hero-sub">Der offizielle Start der Therapie Business School.</p>
+    <div class="hero-ctas">
+      <a href="#anmeldung" class="btn btn-sand">Jetzt anmelden</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ JOURNEY: INTRO + PROGRAMM + ECKDATEN ============ -->
+<div class="journey" id="anmeldung">
+  <!-- Intro -->
+  <section class="journey-station">
+    <div class="wrap">
+      <p class="journey-intro reveal">
+        Ein Tag voller Impulse für deine Praxis, ein durchdachtes Programm und viel Raum für echten
+        Austausch &ndash; wir freuen uns auf den Start der Therapie Business School mit dir.
+      </p>
+    </div>
+  </section>
+
+  <!-- Programm -->
+  <section class="journey-station">
+    <div class="wrap">
+      <div class="reveal" style="text-align:center;">
+        <div class="section-label">23. Oktober, 11:00&ndash;16:00 Uhr</div>
+        <h2 class="headline" style="margin:0 auto;">Das erwartet dich</h2>
+      </div>
+
+      <div class="programm-body">
+        <div class="journey-thread" aria-hidden="true">
+          <svg id="journey-line-svg" viewBox="0 0 100 1600" preserveAspectRatio="none">
+            <path class="line-track" id="journey-line-track" d="M50,0 C60,60 60,130 50,190 C40,250 40,320 50,380 C60,440 60,510 50,570 C40,630 40,700 50,760 C60,820 60,890 50,950 C40,1010 40,1080 50,1140 C60,1200 60,1270 50,1330 C40,1390 40,1460 50,1520 C55,1560 55,1580 50,1600" />
+            <path class="line-progress" id="journey-line-progress" d="M50,0 C60,60 60,130 50,190 C40,250 40,320 50,380 C60,440 60,510 50,570 C40,630 40,700 50,760 C60,820 60,890 50,950 C40,1010 40,1080 50,1140 C60,1200 60,1270 50,1330 C40,1390 40,1460 50,1520 C55,1560 55,1580 50,1600" />
+          </svg>
+        </div>
+
+        <div class="stops">
+          <div class="stop">
+            <div class="stop-time">11:00</div>
+            <div class="stop-head">Begrüßung &amp; Ankunft</div>
+          </div>
+          <div class="stop">
+            <div class="stop-time">11:30</div>
+            <div class="stop-head">Willkommen in der Therapie Business School</div>
+            <p class="stop-text">Erkennen, entscheiden, erfolgreich sein. (60 Minuten)</p>
+            <div class="stop-person">
+              <img class="speaker-photo" src="assets/speakers/nick-bol.jpg" alt="" loading="lazy">
+              <span>Nick Bol</span>
+            </div>
+          </div>
+          <div class="stop">
+            <div class="stop-time">12:30</div>
+            <div class="stop-head">Pause &middot; Austausch &amp; Networking</div>
+            <p class="stop-text">15 Minuten</p>
+          </div>
+          <div class="stop">
+            <div class="stop-time">12:45</div>
+            <div class="stop-head">Die leise Praxis stirbt zuerst: Wie du 2026 als Therapeut unsichtbar bleibst oder zur regionalen Marke wirst</div>
+            <p class="stop-text">30 Minuten</p>
+            <div class="stop-person">
+              <img class="speaker-photo" src="assets/speakers/amelie-kaijo.jpg" alt="" loading="lazy">
+              <span>Amelie Kaijo</span>
+            </div>
+          </div>
+          <div class="stop">
+            <div class="stop-time">13:15</div>
+            <div class="stop-head">Mittagspause in der Myokraftbar</div>
+          </div>
+          <div class="stop">
+            <div class="stop-time">13:45</div>
+            <div class="stop-head">Erst mal du &ndash; warum Selbstf&uuml;rsorge kein Egoismus ist</div>
+            <p class="stop-text">Warum Selbstf&uuml;rsorge f&uuml;r Praxisinhaber:innen kein Luxus, sondern Voraussetzung ist.</p>
+            <div class="stop-person">
+              <img class="speaker-photo" src="assets/speakers/tanja-scheller.jpg" alt="" loading="lazy">
+              <span>Prof. Dr. Tanja Scheller</span>
+            </div>
+          </div>
+          <div class="stop">
+            <div class="stop-time">14:30</div>
+            <div class="stop-head">Fragen &amp; Antworten</div>
+            <p class="stop-text">Ausreichend Raum für deine Fragen an das TBS-Team.</p>
+          </div>
+          <div class="stop">
+            <div class="stop-time">15:00</div>
+            <div class="stop-head">Austausch &amp; Networking</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="caterer reveal">
+        <div class="caterer-slideshow">
+          <img src="assets/myokraftbar/myokraftbar-speisen.jpg" alt="Bunte gesunde Bowls und Getränke der Myokraftbar" loading="lazy">
+          <img src="assets/myokraftbar/myokraftbar-wraps.jpg" alt="Frisch zubereitete Wraps der Myokraftbar" loading="lazy">
+          <img src="assets/myokraftbar/myokraftbar-lunch.jpg" alt="Gedeckter Lunch-Tisch der Myokraftbar" loading="lazy">
+          <img src="assets/myokraftbar/myokraftbar-catering.jpg" alt="Frisch zubereitetes Catering der Myokraftbar" loading="lazy">
+          <img src="assets/myokraftbar/myokraftbar-quality-time.jpg" alt="Gemeinsame Auszeit bei der Myokraftbar" loading="lazy">
+        </div>
+        <div class="caterer-copy">
+          <div class="fact-label">Offizieller Caterer</div>
+          <img class="caterer-logo" src="assets/myokraftbar/myokraftbar-logo.png" alt="Myokraftbar" loading="lazy">
+          <p class="agenda-desc" style="margin-top:14px;">Gesundes, frisches Catering direkt vor Ort &ndash; von Bowls über Wraps bis Kaffee.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ ANMELDUNG (zentriert) ============ -->
+<section id="sichere-dir-deinen-platz">
+  <div class="wrap wrap-narrow">
+    <div class="reveal">
+      <div class="pay-card">
+        <h3>Sichere dir jetzt deinen Platz</h3>
+        <p class="pay-desc">
+          Die Teilnahme am Event ist kostenfrei. Für die Mittagspause in der Myokraftbar berechnen wir
+          25&nbsp;Euro Verpflegungspauschale.
+        </p>
+        <div class="pay-limit">Anmeldung bis <strong>15. Oktober 2026</strong>, limitiert auf <strong>100 Plätze</strong>.</div>
+        <button type="button" class="btn btn-sand btn-block" id="anmeldung-toggle" aria-expanded="false" aria-controls="anmeldung-form-wrap">Jetzt anmelden</button>
+
+        <div class="anmeldung-form-wrap" id="anmeldung-form-wrap">
+          <form class="pay-form" id="form-kickoff" novalidate data-stripe-url="[STRIPE_PAYMENT_LINK_URL – von Nick einsetzen]">
+            <p class="form-note">Alle Felder sind Pflichtfelder. Nach dem Absenden geht es weiter zum Bezahlprozess für die Verpflegungspauschale.</p>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="k-firstname">Vorname</label>
+                <input class="input" type="text" id="k-firstname" name="firstname" required>
+              </div>
+              <div class="field">
+                <label for="k-lastname">Nachname</label>
+                <input class="input" type="text" id="k-lastname" name="lastname" required>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="k-email">E-Mail</label>
+                <input class="input" type="email" id="k-email" name="email" required>
+              </div>
+              <div class="field">
+                <label for="k-phone">Telefon</label>
+                <input class="input" type="tel" id="k-phone" name="phone" required>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="k-company">Praxis / Unternehmen</label>
+                <input class="input" type="text" id="k-company" name="company" required>
+              </div>
+              <div class="field">
+                <label for="k-practice-type">Deine Praxis</label>
+                <select class="input" id="k-practice-type" name="practice_type" required>
+                  <option value="" disabled selected>Bitte wählen</option>
+                  <option>Podologie</option>
+                  <option>Physiotherapie</option>
+                  <option>Logopädie</option>
+                  <option>Ergotherapie</option>
+                  <option>Osteopathie</option>
+                  <option>Andere Praxis</option>
+                  <option>Gründer:in (noch keine eigene Praxis)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="k-source">Wie hast du von uns erfahren?</label>
+                <select class="input" id="k-source" name="source" required>
+                  <option value="" disabled selected>Bitte wählen</option>
+                  <option>Instagram / Social Media</option>
+                  <option>Empfehlung</option>
+                  <option>Google-Suche</option>
+                  <option>TBS-Website</option>
+                  <option>Persönlicher Kontakt</option>
+                  <option>Sonstiges</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="k-count">Personenanzahl</label>
+                <input class="input" type="number" id="k-count" name="count" min="1" max="5" value="1" required>
+              </div>
+            </div>
+
+            <div class="consent">
+              <input type="checkbox" id="k-consent" name="consent" required>
+              <label for="k-consent">Ich bin einverstanden, dass meine Angaben zur Bearbeitung dieser Anmeldung gespeichert werden.</label>
+            </div>
+
+            <button type="submit" class="btn btn-sand btn-block" id="form-kickoff-submit" disabled>Weiter</button>
+            <!-- TODO Phillip/Nick: Die hier erfassten Formulardaten werden aktuell nicht übertragen
+                 (kein Backend angebunden) - nur die Pflichtfeld-Prüfung läuft, danach Weiterleitung
+                 zum Stripe-Platzhalter-Link. Sobald eine Versand-Technik entschieden ist (siehe auch
+                 Partnerabend-Formular), hier echten Versand vor der Stripe-Weiterleitung ergänzen. -->
+          </form>
+        </div>
+
+      </div>
+      <p class="privacy-note">
+        Mit dem Absenden akzeptierst du unsere
+        <a href="[Datenschutzerklärung-Link – einsetzen]">Datenschutzerklärung</a>.
+      </p>
+
+      <!-- TODO Nick: echten Stripe Payment Link im Stripe-Dashboard anlegen und den
+           Platzhalter im Formular oben (data-stripe-url) ersetzen, sowie einen echten
+           Link zur Datenschutzerklärung oben einsetzen. -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ STANDORT ============ -->
+<section>
+  <div class="wrap">
+    <div class="reveal" style="text-align:center;">
+      <h2 class="headline standort-headline">📍 So findest du uns</h2>
+    </div>
+
+    <div class="location" style="margin-top:40px;">
+      <div class="reveal location-addr">
+        <svg class="addr-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 345.5 109.8" role="img" aria-label="TBS Signet">
+          <path d="M319.54,57.88c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03v-51.91h85.03Z" fill="#051D45"/>
+          <path d="M202.58,57.88c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03v-51.91h85.03,0Z" fill="#051D45"/>
+          <path d="M110.36,109.79H.03c.94-29.08,24.3-52.43,53.38-53.38,30.47-.99,55.97,22.91,56.96,53.38h0Z" fill="#051D45"/>
+          <path d="M260.46,51.91c-14.34,0-25.96-11.62-25.96-25.96S246.13,0,260.46,0h85.03v51.91h-85.03Z" fill="#051D45"/>
+          <path d="M202.58,0c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03V0h85.03Z" fill="#051D45"/>
+          <rect width="110.39" height="51.91" fill="#051D45"/>
+        </svg>
+        <div class="addr-name">Zu Gast bei Myokraft</div>
+        <div class="addr-lines">
+          Neustraße 15<br>
+          47623 Kevelaer
+        </div>
+        <a class="btn btn-2" href="https://www.google.com/maps/search/?api=1&query=Myokraft+Neustra%C3%9Fe+15+47623+Kevelaer" target="_blank" rel="noopener">Route planen</a>
+        <div class="addr-lines" style="margin-top:18px;">
+          <strong>Zusatzinfo:</strong> Parken in der Tiefgarage Luxemburger Galerie oder direkt vor dem Eingang Luxemburger Galerie.
+        </div>
+      </div>
+      <div class="reveal map-frame">
+        <iframe
+          src="https://www.google.com/maps?q=Myokraft,+Neustra%C3%9Fe+15,+47623+Kevelaer&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Karte: Myokraft, Neustraße 15, 47623 Kevelaer">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 345.5 109.8" role="img" aria-label="TBS Signet" style="height:40px;width:auto;">
+        <path d="M319.54,57.88c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03v-51.91h85.03Z" fill="#FFF"/>
+        <path d="M202.58,57.88c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03v-51.91h85.03,0Z" fill="#FFF"/>
+        <path d="M110.36,109.79H.03c.94-29.08,24.3-52.43,53.38-53.38,30.47-.99,55.97,22.91,56.96,53.38h0Z" fill="#FFF"/>
+        <path d="M260.46,51.91c-14.34,0-25.96-11.62-25.96-25.96S246.13,0,260.46,0h85.03v51.91h-85.03Z" fill="#FFF"/>
+        <path d="M202.58,0c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03V0h85.03Z" fill="#FFF"/>
+        <rect width="110.39" height="51.91" fill="#FFF"/>
+      </svg>
+    </div>
+    <p class="foot-contact">
+      Fragen zum Kick-Off Event? Schreib uns eine Mail:
+      <a href="mailto:info@therapiebusinessschool.de">info@therapiebusinessschool.de</a>
+    </p>
+    <p class="foot-fine">Therapie Business School · Myokraft, Neustraße 15, 47623 Kevelaer</p>
+  </div>
+</footer>
+
+<script>
+  // Hero reveal
+  document.querySelector('.reveal-hero').classList.add('in');
+
+  // Scroll-reveal via IntersectionObserver (kein scroll-Event-Listener)
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+  }
+
+  // Anmelde-Dropdown: Klick auf "Jetzt anmelden" klappt das Formular in der
+  // Pay-Card auf. Erst nach erfolgreichem Absenden (Pflichtfelder ausgefüllt)
+  // geht es weiter zu Stripe.
+  var anmeldungToggle = document.getElementById('anmeldung-toggle');
+  var anmeldungWrap = document.getElementById('anmeldung-form-wrap');
+  if (anmeldungToggle && anmeldungWrap) {
+    anmeldungToggle.addEventListener('click', function () {
+      var isOpen = anmeldungWrap.classList.toggle('open');
+      anmeldungToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      // Sobald das Formular offen ist, ist "Jetzt anmelden" nicht mehr der
+      // nächste Schritt (das ist jetzt "Weiter" im Formular) -> optisch inaktiv.
+      anmeldungToggle.classList.toggle('is-inactive', isOpen);
+      if (isOpen) {
+        anmeldungWrap.querySelector('input, select').focus({ preventScroll: true });
+      }
+    });
+  }
+
+  var kickoffForm = document.getElementById('form-kickoff');
+  if (kickoffForm) {
+    // "Weiter" bleibt gesperrt, bis das Einverständnis-Häkchen gesetzt ist -
+    // erst dann ist der nächste Schritt (Weiterleitung zu Stripe) erlaubt.
+    var kickoffConsent = document.getElementById('k-consent');
+    var kickoffSubmit = document.getElementById('form-kickoff-submit');
+    if (kickoffConsent && kickoffSubmit) {
+      kickoffConsent.addEventListener('change', function () {
+        kickoffSubmit.disabled = !kickoffConsent.checked;
+      });
+    }
+
+    kickoffForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!kickoffForm.checkValidity()) {
+        kickoffForm.reportValidity();
+        return;
+      }
+      // TODO Phillip/Nick: hier werden die Formulardaten aktuell nicht übertragen
+      // (kein Backend), siehe Kommentar im HTML. Weiterleitung zum Stripe-Link:
+      window.location.href = kickoffForm.dataset.stripeUrl;
+    });
+  }
+
+  // Timeline-Linie: Fortschritt synchron zum Scrollen durch das Programm
+  // einfärben. Jeder Programmpunkt wird erst "aktiv" (eingeblendet), sobald
+  // die Linie auf seiner Höhe angekommen ist, statt einfach beim Eintreten
+  // in den Viewport (siehe .stop/.stop.active in site.css).
+  var lineProgress = document.getElementById('journey-line-progress');
+  var programmBody = document.querySelector('.programm-body');
+  var stopEls = Array.prototype.slice.call(document.querySelectorAll('.stop'));
+
+  if (lineProgress && programmBody && !reduceMotion) {
+    var lineLength = lineProgress.getTotalLength();
+    lineProgress.style.strokeDasharray = lineLength;
+    lineProgress.style.strokeDashoffset = lineLength;
+
+    var tickScheduled = false;
+    function updateLineProgress() {
+      tickScheduled = false;
+      var rect = programmBody.getBoundingClientRect();
+      var vh = window.innerHeight;
+      var total = rect.height + vh * 0.6;
+      var scrolled = vh * 0.8 - rect.top;
+      var progress = Math.min(1, Math.max(0, scrolled / total));
+      lineProgress.style.strokeDashoffset = lineLength * (1 - progress);
+
+      // Ein Stop wird exakt dann aktiviert, wenn die vordere Kante der
+      // gezeichneten Linie (dieselbe progress-Berechnung wie für den
+      // Dashoffset oben) seine eigene Höhe erreicht hat - dadurch bleiben
+      // Linie und Programmpunkt visuell synchron statt zeitversetzt.
+      var lineFrontY = rect.top + rect.height * progress;
+      stopEls.forEach(function (el) {
+        var stopRect = el.getBoundingClientRect();
+        var stopMid = stopRect.top + stopRect.height * 0.25;
+        if (stopMid <= lineFrontY) {
+          el.classList.add('active');
+        }
+      });
+    }
+    function onScroll() {
+      if (!tickScheduled) {
+        tickScheduled = true;
+        requestAnimationFrame(updateLineProgress);
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    updateLineProgress();
+  } else {
+    if (lineProgress) lineProgress.style.display = 'none';
+    stopEls.forEach(function (el) { el.classList.add('active'); });
+  }
+</script>
+
+<!-- TEST: Velaris-Hero (WebGL-Gradient), portiert aus components/ui/velaris.tsx auf Vanilla JS,
+     da dieses Projekt kein React/shadcn nutzt. Farben auf TBS Navy/Sand/Slate umgestellt.
+     Zum Entfernen: dieses <script>-Tag löschen, .hero-gl-Canvas-Element entfernen,
+     .hero-arcs display:none wieder rausnehmen (siehe <style>). Backup liegt als
+     index.html.backup-vor-velaris-test im selben Ordner. -->
+<script>
+(function () {
+  var canvas = document.getElementById('hero-gl');
+  var container = canvas ? canvas.closest('.hero') : null;
+  if (!canvas || !container) return;
+
+  var gl = canvas.getContext('webgl');
+  if (!gl) return; // kein WebGL verfügbar -> Fallback bleibt der bestehende Navy-Hintergrund
+
+  var vertexSrc = [
+    'attribute vec2 position;',
+    'varying vec2 vUv;',
+    'void main() {',
+    '  vUv = position * 0.5 + 0.5;',
+    '  gl_Position = vec4(position, 0.0, 1.0);',
+    '}'
+  ].join('\n');
+
+  var fragmentSrc = [
+    'precision highp float;',
+    'varying vec2 vUv;',
+    'uniform vec2  u_resolution;',
+    'uniform float u_time;',
+    'uniform float u_grain;',
+    'uniform vec3  u_colors[4];',
+    'uniform vec3  u_bg;',
+    'vec3 permute(vec3 x) { return mod(((x*34.0)+1.0)*x, 289.0); }',
+    'float snoise(vec2 v){',
+    '  const vec4 C = vec4(0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439);',
+    '  vec2 i  = floor(v + dot(v, C.yy) );',
+    '  vec2 x0 = v -   i + dot(i, C.xx);',
+    '  vec2 i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);',
+    '  vec4 x12 = x0.xyxy + C.xxzz;',
+    '  x12.xy -= i1;',
+    '  i = mod(i, 289.0);',
+    '  vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 )) + i.x + vec3(0.0, i1.x, 1.0 ));',
+    '  vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);',
+    '  m = m*m ;',
+    '  m = m*m ;',
+    '  vec3 x = 2.0 * fract(p * C.www) - 1.0;',
+    '  vec3 h = abs(x) - 0.5;',
+    '  vec3 ox = floor(x + 0.5);',
+    '  vec3 a0 = x - ox;',
+    '  m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );',
+    '  vec3 g;',
+    '  g.x  = a0.x  * x0.x  + h.x  * x0.y;',
+    '  g.yz = a0.yz * x12.xz + h.yz * x12.yw;',
+    '  return 130.0 * dot(m, g);',
+    '}',
+    'void main() {',
+    '  vec2 uv = vUv;',
+    '  float ratio = u_resolution.x / u_resolution.y;',
+    '  vec2 p = uv - 0.5;',
+    '  p.x *= ratio;',
+    '  float t = u_time * 0.1;',
+    '  float n1 = snoise(p * 0.4 + vec2(t * 0.2, -t * 0.3));',
+    '  float n2 = snoise(p * 0.55 + vec2(-t * 0.15, t * 0.25) + n1 * 0.25);',
+    '  float n3 = snoise(p * 0.75 + vec2(t * 0.1, -t * 0.2) + n2 * 0.2);',
+    '  vec3 col = u_bg;',
+    '  float dist = length(p) * 1.5;',
+    '  float vignette = 1.0 - smoothstep(0.3, 1.2, dist);',
+    '  col = mix(col, u_colors[0], smoothstep(-0.2, 0.5, n1) * 0.85);',
+    '  col = mix(col, u_colors[1], smoothstep(-0.1, 0.6, n2) * 0.7);',
+    '  col = mix(col, u_colors[2], smoothstep(-0.3, 0.4, n3) * 0.6);',
+    '  col = mix(col, u_colors[3], smoothstep(0.0, 0.7, n1 * n2) * 0.5);',
+    '  float glow = smoothstep(0.8, 0.0, dist) * 0.3;',
+    '  col += u_colors[1] * glow;',
+    '  col = mix(col * 0.2, col, vignette);',
+    '  float grain = fract(sin(dot(uv, vec2(12.9898, 78.233))) * 43758.5453 + u_time);',
+    '  col += (grain - 0.5) * u_grain * 0.1;',
+    '  gl_FragColor = vec4(col, 1.0);',
+    '}'
+  ].join('\n');
+
+  function createShader(type, src) {
+    var s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+
+  var program = gl.createProgram();
+  gl.attachShader(program, createShader(gl.VERTEX_SHADER, vertexSrc));
+  gl.attachShader(program, createShader(gl.FRAGMENT_SHADER, fragmentSrc));
+  gl.linkProgram(program);
+  gl.useProgram(program);
+
+  var buffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+
+  var posLoc = gl.getAttribLocation(program, 'position');
+  gl.enableVertexAttribArray(posLoc);
+  gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+  var locs = {
+    res: gl.getUniformLocation(program, 'u_resolution'),
+    time: gl.getUniformLocation(program, 'u_time'),
+    grain: gl.getUniformLocation(program, 'u_grain'),
+    colors: gl.getUniformLocation(program, 'u_colors'),
+    bg: gl.getUniformLocation(program, 'u_bg')
+  };
+
+  function hexToRgb(hex) {
+    var h = hex.replace('#', '');
+    return [
+      parseInt(h.slice(0, 2), 16) / 255,
+      parseInt(h.slice(2, 4), 16) / 255,
+      parseInt(h.slice(4, 6), 16) / 255
+    ];
+  }
+
+  // TBS-Markenfarben statt Komponenten-Standardgrün (siehe TBS-Branding-Guide-fuer-KI.md)
+  var BG = '#051D45';         // Navy
+  var COLORS = ['#0A2A5C', '#4A5A75', '#D9C9A8', '#051D45']; // Navy-2, Slate, Sand, Navy
+  var SPEED = 1.1;   // ruhiger als Komponenten-Default (2.0), passend zum "unaufgeregten" Markenton
+  var GRAIN = 0.18;  // dezenter als Default (0.3)
+
+  function resize() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = container.clientWidth * dpr;
+    canvas.height = container.clientHeight * dpr;
+    gl.viewport(0, 0, canvas.width, canvas.height);
+  }
+
+  var ro = new ResizeObserver(resize);
+  ro.observe(container);
+  resize();
+
+  var bgRgb = hexToRgb(BG);
+  var colorsFlat = new Float32Array(COLORS.slice(0, 4).reduce(function (acc, hex) {
+    return acc.concat(hexToRgb(hex));
+  }, []));
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Sobald der Hero komplett aus dem Sichtbereich gescrollt ist, deckt der
+  // nächste Abschnitt den fixen Hintergrund vollständig ab -> Rendering
+  // pausieren statt sinnlos unsichtbar weiterzulaufen (Performance/Akku).
+  var isVisible = true;
+  var rafId = null;
+
+  function render(t) {
+    gl.uniform2f(locs.res, canvas.width, canvas.height);
+    gl.uniform1f(locs.time, t * 0.001 * SPEED);
+    gl.uniform1f(locs.grain, GRAIN);
+    gl.uniform3f(locs.bg, bgRgb[0], bgRgb[1], bgRgb[2]);
+    gl.uniform3fv(locs.colors, colorsFlat);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    if (!reduceMotion && isVisible) {
+      rafId = requestAnimationFrame(render);
+    } else {
+      rafId = null;
+    }
+  }
+  rafId = requestAnimationFrame(render);
+
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    var heroVisibility = new IntersectionObserver(function (entries) {
+      isVisible = entries[0].isIntersecting;
+      if (isVisible && rafId === null) {
+        rafId = requestAnimationFrame(render);
+      }
+    }, { threshold: 0 });
+    heroVisibility.observe(container);
+  }
+})();
+</script>
+
+</body>
+</html>
