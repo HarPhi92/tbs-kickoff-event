@@ -75,7 +75,17 @@
     justify-content: space-between;
     gap: 16px;
   }
-  .nav-logo svg { height: 26px; width: auto; }
+  .nav-logo { display: flex; align-items: center; gap: 10px; }
+  .nav-logo-icon { height: 26px; width: auto; flex-shrink: 0; }
+  .nav-logo-text {
+    color: #FFF;
+    font-weight: 700;
+    font-size: .82rem;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  @media (max-width: 620px) { .nav-logo-text { display: none; } }
   .nav-links { display: flex; gap: 8px; align-items: center; }
   .nav-links a {
     text-decoration: none;
