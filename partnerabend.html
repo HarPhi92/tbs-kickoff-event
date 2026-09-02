@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Partner- &amp; Expertenabend der Therapie Business School · 22. Oktober 2026 · Kevelaer</title>
+<meta name="description" content="Partner- und Expertenabend der Therapie Business School: 22. Oktober 2026, 17:00–21:00 Uhr in Kevelaer. Kostenfrei, exklusiver Rahmen, jetzt verbindlich anmelden.">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Partner- &amp; Expertenabend der Therapie Business School · 22. Oktober 2026 · Kevelaer">
+<meta property="og:description" content="Partner- und Expertenabend der Therapie Business School: 22. Oktober 2026, 17:00–21:00 Uhr in Kevelaer. Kostenfrei, exklusiver Rahmen, jetzt verbindlich anmelden.">
+<meta property="og:image" content="og-image.jpg">
+<meta property="og:locale" content="de_DE">
+<meta name="twitter:card" content="summary_large_image">
+<!-- TODO Phillip/Nick: og-image.jpg (1200x630) muss noch erstellt und neben dieser Datei abgelegt werden, sonst zeigt die Link-Vorschau nichts an. Teilt sich aktuell das og:image mit index.html. -->
+
+<!-- Favicon: eingebettetes TBS-Signet-SVG aus dem Branding Guide §2.2 als Inline-Data-URI, da keine favicon.ico/.png-Dateien lokal vorliegen -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%23051D45'/%3E%3Cg transform='translate(76.00,198.80) scale(1.04197)'%3E%3Cpath d='M319.54,57.88c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03v-51.91h85.03Z' fill='%23FFF'/%3E%3Cpath d='M202.58,57.88c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03v-51.91h85.03,0Z' fill='%23FFF'/%3E%3Cpath d='M110.36,109.79H.03c.94-29.08,24.3-52.43,53.38-53.38,30.47-.99,55.97,22.91,56.96,53.38h0Z' fill='%23FFF'/%3E%3Cpath d='M260.46,51.91c-14.34,0-25.96-11.62-25.96-25.96S246.13,0,260.46,0h85.03v51.91h-85.03Z' fill='%23FFF'/%3E%3Cpath d='M202.58,0c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03V0h85.03Z' fill='%23FFF'/%3E%3Crect width='110.39' height='51.91' fill='%23FFF'/%3E%3C/g%3E%3C/svg%3E">
+
+<!-- Montserrat (Pflicht laut TBS-Branding-Guide §4 – ohne diesen Link rendert die Seite in Arial) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/site.css">
+
+<!-- Hero und Inhalte starten per CSS unsichtbar (opacity:0) und werden erst durch das
+     Reveal-Script am Seitenende eingeblendet. Läuft JS nicht (z.B. iOS-Dateivorschau
+     "Quick Look" statt "In Safari öffnen", JS deaktiviert), bliebe die Seite sonst
+     komplett leer - dieser Fallback erzwingt volle Sichtbarkeit ohne JS. -->
+<noscript>
+<style>
+  .hero-eyebrow, .hero h1, .hero-kickoff-title, .hero-sub, .hero-ctas,
+  .page-intro h1, .reveal, .stop {
+    animation: noscript-rise .8s cubic-bezier(.16,1,.3,1) both !important;
+  }
+  @keyframes noscript-rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: none; }
+  }
+  .hero-gl { display: none !important; }
+  .hero-arcs { display: block !important; }
+</style>
+</noscript>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="wrap">
+    <a class="nav-logo" href="index.html" aria-label="Zur Kick-Off-Startseite">
+      <!-- Icon + separates Text-Element statt der alten Ein-SVG-Wortmarke: deren Vektor-Buchstaben
+           deckten trotz aria-label "TBS – Therapie Business School" tatsächlich nur "THERAPIE" ab
+           ("BUSINESS SCHOOL" fehlte im Pfad-Datensatz komplett) - selbes Muster wie .hero-wordmark. -->
+      <svg class="nav-logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 345.5 109.8" role="img" aria-label="TBS Signet">
+        <path d="M319.54,57.88c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03v-51.91h85.03Z" fill="#FFF"/>
+        <path d="M202.58,57.88c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03v-51.91h85.03,0Z" fill="#FFF"/>
+        <path d="M110.36,109.79H.03c.94-29.08,24.3-52.43,53.38-53.38,30.47-.99,55.97,22.91,56.96,53.38h0Z" fill="#FFF"/>
+        <path d="M260.46,51.91c-14.34,0-25.96-11.62-25.96-25.96S246.13,0,260.46,0h85.03v51.91h-85.03Z" fill="#FFF"/>
+        <path d="M202.58,0c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03V0h85.03Z" fill="#FFF"/>
+        <rect width="110.39" height="51.91" fill="#FFF"/>
+      </svg>
+      <span class="nav-logo-text">Therapie Business School</span>
+    </a>
+    <div class="nav-links">
+      <a href="#anmeldung">Alle Infos</a>
+      <a href="#sichere-dir-deinen-platz" class="nav-cta">Jetzt anmelden</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<div id="top"></div>
+<header class="hero reveal-hero">
+  <div class="hero-arcs" aria-hidden="true">
+    <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+      <circle cx="150" cy="120" r="420" fill="none" stroke="#D9C9A8" stroke-width="1.5" opacity=".18"/>
+      <circle cx="1080" cy="700" r="520" fill="none" stroke="#D9C9A8" stroke-width="1.5" opacity=".14"/>
+      <circle cx="1080" cy="700" r="360" fill="none" stroke="#FFFFFF" stroke-width="1" opacity=".08"/>
+    </svg>
+  </div>
+  <canvas class="hero-gl" id="hero-gl" aria-hidden="true"></canvas>
+  <div class="wrap hero-inner">
+    <div class="hero-wordmark" aria-hidden="true">
+      <svg class="hero-wordmark-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 345.5 109.8" role="img" aria-label="TBS Signet">
+        <path d="M319.54,57.88c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03v-51.91h85.03Z" fill="#FFF"/>
+        <path d="M202.58,57.88c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03v-51.91h85.03,0Z" fill="#FFF"/>
+        <path d="M110.36,109.79H.03c.94-29.08,24.3-52.43,53.38-53.38,30.47-.99,55.97,22.91,56.96,53.38h0Z" fill="#FFF"/>
+        <path d="M260.46,51.91c-14.34,0-25.96-11.62-25.96-25.96S246.13,0,260.46,0h85.03v51.91h-85.03Z" fill="#FFF"/>
+        <path d="M202.58,0c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03V0h85.03Z" fill="#FFF"/>
+        <rect width="110.39" height="51.91" fill="#FFF"/>
+      </svg>
+      <span class="hero-wordmark-text">Therapie Business School</span>
+    </div>
+    <span class="hero-eyebrow">22. Oktober 2026 · 17:00&ndash;21:00 Uhr · Kevelaer</span>
+    <h1 class="hero-kickoff-title">Partner- &amp; Expertenabend</h1>
+    <p class="hero-sub">Der offizielle Start der Therapie Business School mit Partnern, Experten und Freunden.</p>
+    <div class="hero-ctas">
+      <a href="#sichere-dir-deinen-platz" class="btn btn-sand">Jetzt anmelden</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ JOURNEY: INTRO + VIDEO + ABLAUF ============ -->
+<div class="journey" id="anmeldung">
+  <!-- Intro -->
+  <section class="journey-station">
+    <div class="wrap">
+      <p class="journey-intro reveal">
+        Auch dieser Abend steht für den offiziellen Start der Therapie Business School &ndash; gemeinsam
+        mit unseren wichtigsten Partnern, Experten und Freunden. Kein Publikum, kein Frontalvortrag,
+        sondern echtes Kennenlernen: viel Raum für Gespräche unter Menschen, die die Therapiebranche bewegen.
+      </p>
+    </div>
+  </section>
+
+  <!-- Video + Ablauf -->
+  <section class="journey-station">
+    <div class="wrap">
+      <div class="reveal" style="text-align:center;">
+        <div class="section-label">22. Oktober, 17:00&ndash;21:00 Uhr</div>
+        <h2 class="headline" style="margin:0 auto;">Der Abend im Überblick</h2>
+      </div>
+
+      <div class="video-placeholder reveal" role="img" aria-label="Platzhalter für das Einladungsvideo zum Partner- & Expertenabend">
+        <div class="video-placeholder-inner">
+          <span class="video-play-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 22 22"><path d="M6 4l12 7-12 7V4z" fill="currentColor"/></svg>
+          </span>
+          <span class="video-placeholder-label">Einladungsvideo folgt in Kürze</span>
+        </div>
+      </div>
+      <!-- TODO Phillip/Nick: Kurzes Einladungsvideo zum Partnerabend wird noch gedreht. Sobald es
+           vorliegt, diesen Platzhalter durch den echten Embed ersetzen (YouTube-iframe oder
+           <video>-Tag mit Poster, je nach Hosting-Entscheidung). -->
+
+      <div class="simple-steps reveal">
+        <div class="simple-step">
+          <div class="simple-step-time">17:00</div>
+          <div>
+            <div class="simple-step-head">Ankunft &amp; Come Together</div>
+          </div>
+        </div>
+        <div class="simple-step">
+          <div class="simple-step-time">im Verlauf</div>
+          <div>
+            <div class="simple-step-head">Offizieller Launch der Therapie Business School</div>
+            <p class="simple-step-text">Kurze Ansprache von Nick Bol &ndash; der Startschuss der TBS.</p>
+          </div>
+        </div>
+        <div class="simple-step">
+          <div class="simple-step-time">bis 21:00</div>
+          <div>
+            <div class="simple-step-head">Networking &amp; Austausch</div>
+            <p class="simple-step-text">Zeit zum Kennenlernen unter Partnern und Experten &ndash; bewusst ohne festes Programm.</p>
+          </div>
+        </div>
+      </div>
+      <!-- TODO Phillip/Nick: Ablauf grob skizziert (17:00 Start, offizieller Launch im Verlauf des
+           Abends, 21:00 Ende). Bei Bedarf feinere Zeiten/Programmpunkte ergänzen. -->
+    </div>
+  </section>
+</div>
+
+<!-- ============ ANMELDUNG (zentriert) ============ -->
+<section id="sichere-dir-deinen-platz">
+  <div class="wrap wrap-narrow">
+    <div class="reveal">
+      <div class="pay-card">
+        <h3>Verbindlich anmelden</h3>
+        <p class="pay-desc">
+          Schön, dass du dabei bist &ndash; dieser Abend ist eine persönliche Einladung an dich. Damit wir
+          uns gut auf alle Gäste einstellen können, bitten wir dich um eine verbindliche Anmeldung.
+        </p>
+        <button type="button" class="btn btn-sand btn-block" id="anmeldung-toggle" aria-expanded="false" aria-controls="anmeldung-form-wrap">Jetzt anmelden</button>
+
+        <div class="anmeldung-form-wrap" id="anmeldung-form-wrap">
+          <form class="pay-form" id="form-partnerabend" novalidate data-signup-webhook="https://n8n.therapiebusinessschool.de/webhook/partnerabend-signup">
+            <p class="form-note">Alle Felder außer Nachricht sind Pflichtfelder.</p>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="a1-firstname">Vorname</label>
+                <input class="input" type="text" id="a1-firstname" name="firstname" required>
+              </div>
+              <div class="field">
+                <label for="a1-lastname">Nachname</label>
+                <input class="input" type="text" id="a1-lastname" name="lastname" required>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="a1-email">E-Mail</label>
+                <input class="input" type="email" id="a1-email" name="email" required>
+              </div>
+              <div class="field">
+                <label for="a1-phone">Telefon</label>
+                <input class="input" type="tel" id="a1-phone" name="phone" required>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="a1-company">Praxis / Unternehmen</label>
+                <input class="input" type="text" id="a1-company" name="company" required>
+              </div>
+              <div class="field">
+                <label for="a1-role">Rolle</label>
+                <select class="input" id="a1-role" name="role" required>
+                  <option value="" disabled selected>Bitte wählen</option>
+                  <option>Branchenpartner</option>
+                  <option>Experte</option>
+                  <option>Referent</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="a1-count">Personenanzahl</label>
+              <input class="input" type="number" id="a1-count" name="count" min="1" max="2" value="1" required>
+            </div>
+
+            <div class="field">
+              <label for="a1-message">Nachricht <span class="optional">(optional)</span></label>
+              <textarea class="input" id="a1-message" name="message" placeholder="Möchtest du uns noch etwas mitgeben?"></textarea>
+            </div>
+
+            <div class="consent">
+              <input type="checkbox" id="a1-consent" name="consent" required>
+              <label for="a1-consent">Ich bin einverstanden, dass meine Angaben zur Bearbeitung dieser Anmeldung gespeichert werden.</label>
+            </div>
+
+            <button type="submit" class="btn btn-sand btn-block" id="form-partnerabend-submit" disabled>Verbindlich anmelden</button>
+            <p class="form-status" id="a1-status">Danke für deine verbindliche Anmeldung! Wir bestätigen dir deinen Platz in Kürze persönlich.</p>
+          </form>
+        </div>
+
+      </div>
+      <p class="privacy-note">
+        Mit dem Absenden akzeptierst du unsere
+        <a href="[Datenschutzerklärung-Link – einsetzen]">Datenschutzerklärung</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STANDORT ============ -->
+<section>
+  <div class="wrap">
+    <div class="reveal" style="text-align:center;">
+      <h2 class="headline standort-headline">📍 So findest du uns</h2>
+    </div>
+
+    <div class="location" style="margin-top:40px;">
+      <div class="reveal location-addr">
+        <img class="caterer-logo" src="assets/myokraftbar/myokraftbar-logo.png" alt="Myokraftbar" loading="lazy">
+        <div class="addr-name">Zu Gast bei Myokraftbar</div>
+        <div class="addr-lines">
+          Neustraße 15<br>
+          47623 Kevelaer
+        </div>
+        <a class="btn btn-2" href="https://www.google.com/maps/search/?api=1&query=Myokraft+Neustra%C3%9Fe+15+47623+Kevelaer" target="_blank" rel="noopener">Route planen</a>
+        <div class="addr-lines" style="margin-top:18px;">
+          <strong>Zusatzinfo:</strong> Parken in der Tiefgarage Luxemburger Galerie oder direkt vor dem Eingang Luxemburger Galerie.
+        </div>
+        <a class="addr-video-link" href="https://www.youtube.com/watch?v=I_Ud7UVIZeI" target="_blank" rel="noopener">🎥 Video: So findest du unseren Eingang</a>
+      </div>
+      <div class="reveal map-frame">
+        <iframe
+          src="https://www.google.com/maps?q=Myokraft,+Neustra%C3%9Fe+15,+47623+Kevelaer&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Karte: Myokraft, Neustraße 15, 47623 Kevelaer">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 345.5 109.8" role="img" aria-label="TBS Signet" style="height:40px;width:auto;">
+        <path d="M319.54,57.88c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03v-51.91h85.03Z" fill="#FFF"/>
+        <path d="M202.58,57.88c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03v-51.91h85.03,0Z" fill="#FFF"/>
+        <path d="M110.36,109.79H.03c.94-29.08,24.3-52.43,53.38-53.38,30.47-.99,55.97,22.91,56.96,53.38h0Z" fill="#FFF"/>
+        <path d="M260.46,51.91c-14.34,0-25.96-11.62-25.96-25.96S246.13,0,260.46,0h85.03v51.91h-85.03Z" fill="#FFF"/>
+        <path d="M202.58,0c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03V0h85.03Z" fill="#FFF"/>
+        <rect width="110.39" height="51.91" fill="#FFF"/>
+      </svg>
+    </div>
+    <p class="foot-contact">
+      Fragen zum Partner- &amp; Expertenabend? Schreib uns eine Mail:
+      <a href="mailto:info@therapiebusinessschool.de">info@therapiebusinessschool.de</a>
+    </p>
+    <p class="foot-fine">Therapie Business School · Myokraft, Neustraße 15, 47623 Kevelaer</p>
+  </div>
+</footer>
+
+<script>
+  // Hero reveal
+  document.querySelector('.reveal-hero').classList.add('in');
+
+  // Scroll-reveal via IntersectionObserver (kein scroll-Event-Listener)
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+  }
+
+  // Anmelde-Dropdown: Klick auf "Jetzt anmelden" klappt das Formular in der
+  // Pay-Card auf (gleiche Mechanik wie index.html, aber ohne Stripe-Weiterleitung
+  // am Ende - hier bleibt es bei der reinen Anmeldebestätigung, da die
+  // Verpflegungspauschale beim Partnerabend entfällt).
+  var anmeldungToggle = document.getElementById('anmeldung-toggle');
+  var anmeldungWrap = document.getElementById('anmeldung-form-wrap');
+  if (anmeldungToggle && anmeldungWrap) {
+    anmeldungToggle.addEventListener('click', function () {
+      var isOpen = anmeldungWrap.classList.toggle('open');
+      anmeldungToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      anmeldungToggle.classList.toggle('is-inactive', isOpen);
+      if (isOpen) {
+        anmeldungWrap.querySelector('input, select').focus({ preventScroll: true });
+      }
+    });
+  }
+
+  var partnerForm = document.getElementById('form-partnerabend');
+  if (partnerForm) {
+    var partnerConsent = document.getElementById('a1-consent');
+    var partnerSubmit = document.getElementById('form-partnerabend-submit');
+    if (partnerConsent && partnerSubmit) {
+      partnerConsent.addEventListener('change', function () {
+        partnerSubmit.disabled = !partnerConsent.checked;
+      });
+    }
+
+    partnerForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!partnerForm.checkValidity()) {
+        partnerForm.reportValidity();
+        return;
+      }
+      // Zwischenlösung bis der TBS-Hub steht: Anmeldedaten per Webhook an n8n
+      // (schreibt eine Zeile in ein Google Sheet, siehe n8n/partnerabend-signup-workflow.json).
+      // Kein Zahlungsschritt danach, daher kein keepalive/Redirect nötig wie beim
+      // Kick-Off-Formular - die Bestätigungsmeldung wird direkt eingeblendet.
+      var webhookUrl = partnerForm.dataset.signupWebhook;
+      if (webhookUrl) {
+        var data = Object.fromEntries(new FormData(partnerForm).entries());
+        data.event = 'partnerabend-22-10-2026';
+        data.submitted_at = new Date().toISOString();
+        fetch(webhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        }).catch(function () { /* fire-and-forget, siehe Kommentar oben */ });
+      }
+      document.getElementById('a1-status').classList.add('show');
+      partnerSubmit.disabled = true;
+    });
+  }
+</script>
+
+<!-- Velaris-Hero (WebGL-Gradient), identisch zu index.html übernommen für optische
+     Baugleichheit beider Event-Seiten. Zum Entfernen: dieses <script>-Tag löschen,
+     .hero-gl-Canvas-Element entfernen, .hero-arcs display:none wieder rausnehmen. -->
+<script>
+(function () {
+  var canvas = document.getElementById('hero-gl');
+  var container = canvas ? canvas.closest('.hero') : null;
+  if (!canvas || !container) return;
+
+  var gl = canvas.getContext('webgl');
+  if (!gl) return; // kein WebGL verfügbar -> Fallback bleibt der bestehende Navy-Hintergrund
+
+  var vertexSrc = [
+    'attribute vec2 position;',
+    'varying vec2 vUv;',
+    'void main() {',
+    '  vUv = position * 0.5 + 0.5;',
+    '  gl_Position = vec4(position, 0.0, 1.0);',
+    '}'
+  ].join('\n');
+
+  var fragmentSrc = [
+    'precision highp float;',
+    'varying vec2 vUv;',
+    'uniform vec2  u_resolution;',
+    'uniform float u_time;',
+    'uniform float u_grain;',
+    'uniform vec3  u_colors[4];',
+    'uniform vec3  u_bg;',
+    'vec3 permute(vec3 x) { return mod(((x*34.0)+1.0)*x, 289.0); }',
+    'float snoise(vec2 v){',
+    '  const vec4 C = vec4(0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439);',
+    '  vec2 i  = floor(v + dot(v, C.yy) );',
+    '  vec2 x0 = v -   i + dot(i, C.xx);',
+    '  vec2 i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);',
+    '  vec4 x12 = x0.xyxy + C.xxzz;',
+    '  x12.xy -= i1;',
+    '  i = mod(i, 289.0);',
+    '  vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 )) + i.x + vec3(0.0, i1.x, 1.0 ));',
+    '  vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);',
+    '  m = m*m ;',
+    '  m = m*m ;',
+    '  vec3 x = 2.0 * fract(p * C.www) - 1.0;',
+    '  vec3 h = abs(x) - 0.5;',
+    '  vec3 ox = floor(x + 0.5);',
+    '  vec3 a0 = x - ox;',
+    '  m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );',
+    '  vec3 g;',
+    '  g.x  = a0.x  * x0.x  + h.x  * x0.y;',
+    '  g.yz = a0.yz * x12.xz + h.yz * x12.yw;',
+    '  return 130.0 * dot(m, g);',
+    '}',
+    'void main() {',
+    '  vec2 uv = vUv;',
+    '  float ratio = u_resolution.x / u_resolution.y;',
+    '  vec2 p = uv - 0.5;',
+    '  p.x *= ratio;',
+    '  float t = u_time * 0.1;',
+    '  float n1 = snoise(p * 0.4 + vec2(t * 0.2, -t * 0.3));',
+    '  float n2 = snoise(p * 0.55 + vec2(-t * 0.15, t * 0.25) + n1 * 0.25);',
+    '  float n3 = snoise(p * 0.75 + vec2(t * 0.1, -t * 0.2) + n2 * 0.2);',
+    '  vec3 col = u_bg;',
+    '  float dist = length(p) * 1.5;',
+    '  float vignette = 1.0 - smoothstep(0.3, 1.2, dist);',
+    '  col = mix(col, u_colors[0], smoothstep(-0.2, 0.5, n1) * 0.85);',
+    '  col = mix(col, u_colors[1], smoothstep(-0.1, 0.6, n2) * 0.7);',
+    '  col = mix(col, u_colors[2], smoothstep(-0.3, 0.4, n3) * 0.6);',
+    '  col = mix(col, u_colors[3], smoothstep(0.0, 0.7, n1 * n2) * 0.5);',
+    '  float glow = smoothstep(0.8, 0.0, dist) * 0.3;',
+    '  col += u_colors[1] * glow;',
+    '  col = mix(col * 0.2, col, vignette);',
+    '  float grain = fract(sin(dot(uv, vec2(12.9898, 78.233))) * 43758.5453 + u_time);',
+    '  col += (grain - 0.5) * u_grain * 0.1;',
+    '  gl_FragColor = vec4(col, 1.0);',
+    '}'
+  ].join('\n');
+
+  function createShader(type, src) {
+    var s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+
+  var program = gl.createProgram();
+  gl.attachShader(program, createShader(gl.VERTEX_SHADER, vertexSrc));
+  gl.attachShader(program, createShader(gl.FRAGMENT_SHADER, fragmentSrc));
+  gl.linkProgram(program);
+  gl.useProgram(program);
+
+  var buffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+
+  var posLoc = gl.getAttribLocation(program, 'position');
+  gl.enableVertexAttribArray(posLoc);
+  gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+  var locs = {
+    res: gl.getUniformLocation(program, 'u_resolution'),
+    time: gl.getUniformLocation(program, 'u_time'),
+    grain: gl.getUniformLocation(program, 'u_grain'),
+    colors: gl.getUniformLocation(program, 'u_colors'),
+    bg: gl.getUniformLocation(program, 'u_bg')
+  };
+
+  function hexToRgb(hex) {
+    var h = hex.replace('#', '');
+    return [
+      parseInt(h.slice(0, 2), 16) / 255,
+      parseInt(h.slice(2, 4), 16) / 255,
+      parseInt(h.slice(4, 6), 16) / 255
+    ];
+  }
+
+  // TBS-Markenfarben statt Komponenten-Standardgrün (siehe TBS-Branding-Guide-fuer-KI.md)
+  var BG = '#051D45';         // Navy
+  var COLORS = ['#0A2A5C', '#4A5A75', '#D9C9A8', '#051D45']; // Navy-2, Slate, Sand, Navy
+  var SPEED = 1.1;   // ruhiger als Komponenten-Default (2.0), passend zum "unaufgeregten" Markenton
+  var GRAIN = 0.18;  // dezenter als Default (0.3)
+
+  function resize() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = container.clientWidth * dpr;
+    canvas.height = container.clientHeight * dpr;
+    gl.viewport(0, 0, canvas.width, canvas.height);
+  }
+
+  var ro = new ResizeObserver(resize);
+  ro.observe(container);
+  resize();
+
+  var bgRgb = hexToRgb(BG);
+  var colorsFlat = new Float32Array(COLORS.slice(0, 4).reduce(function (acc, hex) {
+    return acc.concat(hexToRgb(hex));
+  }, []));
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var isVisible = true;
+  var rafId = null;
+
+  function render(t) {
+    gl.uniform2f(locs.res, canvas.width, canvas.height);
+    gl.uniform1f(locs.time, t * 0.001 * SPEED);
+    gl.uniform1f(locs.grain, GRAIN);
+    gl.uniform3f(locs.bg, bgRgb[0], bgRgb[1], bgRgb[2]);
+    gl.uniform3fv(locs.colors, colorsFlat);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    if (!reduceMotion && isVisible) {
+      rafId = requestAnimationFrame(render);
+    } else {
+      rafId = null;
+    }
+  }
+  rafId = requestAnimationFrame(render);
+
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    var heroVisibility = new IntersectionObserver(function (entries) {
+      isVisible = entries[0].isIntersecting;
+      if (isVisible && rafId === null) {
+        rafId = requestAnimationFrame(render);
+      }
+    }, { threshold: 0 });
+    heroVisibility.observe(container);
+  }
+})();
+</script>
+
+</body>
+</html>

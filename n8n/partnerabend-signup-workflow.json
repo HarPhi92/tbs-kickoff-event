@@ -1,0 +1,95 @@
+{
+  "name": "TBS Partnerabend – Anmeldung → Google Sheet",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "partnerabend-signup",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "b1c2d3e4-0001-4000-8000-000000000001",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [260, 300],
+      "webhookId": "partnerabend-signup"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "",
+          "mode": "list",
+          "cachedResultName": "TBS Partnerabend Anmeldungen"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Tabellenblatt1"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "timestamp": "={{$json.body.submitted_at}}",
+            "vorname": "={{$json.body.firstname}}",
+            "nachname": "={{$json.body.lastname}}",
+            "email": "={{$json.body.email}}",
+            "telefon": "={{$json.body.phone}}",
+            "praxis": "={{$json.body.company}}",
+            "rolle": "={{$json.body.role}}",
+            "personenanzahl": "={{$json.body.count}}",
+            "nachricht": "={{$json.body.message}}",
+            "einverstanden": "={{$json.body.consent}}",
+            "event": "={{$json.body.event}}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            { "id": "timestamp", "displayName": "timestamp", "type": "string" },
+            { "id": "vorname", "displayName": "vorname", "type": "string" },
+            { "id": "nachname", "displayName": "nachname", "type": "string" },
+            { "id": "email", "displayName": "email", "type": "string" },
+            { "id": "telefon", "displayName": "telefon", "type": "string" },
+            { "id": "praxis", "displayName": "praxis", "type": "string" },
+            { "id": "rolle", "displayName": "rolle", "type": "string" },
+            { "id": "personenanzahl", "displayName": "personenanzahl", "type": "string" },
+            { "id": "nachricht", "displayName": "nachricht", "type": "string" },
+            { "id": "einverstanden", "displayName": "einverstanden", "type": "string" },
+            { "id": "event", "displayName": "event", "type": "string" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b1c2d3e4-0002-4000-8000-000000000002",
+      "name": "In Google Sheet speichern",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [520, 300],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "In Google Sheet speichern",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  }
+}
