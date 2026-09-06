@@ -129,17 +129,17 @@
         <h2 class="headline" style="margin:0 auto;">Das erwartet dich</h2>
       </div>
 
-      <div class="video-placeholder reveal" role="img" aria-label="Platzhalter für das Intro-Video zum Kick-Off Event">
-        <div class="video-placeholder-inner">
+      <!-- YouTube-Facade: zeigt nur das Poster-Bild + Play-Button, der echte iframe (inkl.
+           YouTube-Skripte/Tracking) wird erst per Klick nachgeladen. youtube-nocookie.com
+           reduziert Cookies vor dem Klick zusätzlich. -->
+      <div class="video-embed reveal" id="kickoff-video" data-youtube-id="PD6O6muVukY">
+        <button type="button" class="video-embed-trigger" aria-label="Video abspielen: Willkommen bei der Therapie Business School">
+          <img class="video-embed-poster" src="assets/video/kickoff-intro-poster.jpg" alt="" loading="lazy">
           <span class="video-play-icon" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 22 22"><path d="M6 4l12 7-12 7V4z" fill="currentColor"/></svg>
           </span>
-          <span class="video-placeholder-label">Intro-Video folgt in Kürze</span>
-        </div>
+        </button>
       </div>
-      <!-- TODO Phillip/Nick: Kurzes Intro-Video zum Kick-Off wird noch gedreht. Sobald es vorliegt,
-           diesen Platzhalter durch den echten Embed ersetzen (YouTube-iframe oder <video>-Tag mit
-           Poster, je nach Hosting-Entscheidung). -->
 
       <div class="programm-body">
         <div class="journey-thread" aria-hidden="true">
@@ -232,7 +232,7 @@
         <button type="button" class="btn btn-sand btn-block" id="anmeldung-toggle" aria-expanded="false" aria-controls="anmeldung-form-wrap">Jetzt anmelden</button>
 
         <div class="anmeldung-form-wrap" id="anmeldung-form-wrap">
-          <form class="pay-form" id="form-kickoff" novalidate data-stripe-url="[STRIPE_PAYMENT_LINK_URL – von Nick einsetzen]">
+          <form class="pay-form" id="form-kickoff" novalidate data-stripe-url="[STRIPE_PAYMENT_LINK_URL – von Nick einsetzen]" data-signup-webhook="https://n8n.therapiebusinessschool.de/webhook/kickoff-signup">
             <p class="form-note">Alle Felder sind Pflichtfelder. Nach dem Absenden geht es weiter zum Bezahlprozess für die Verpflegungspauschale.</p>
 
             <div class="field-row">
@@ -300,10 +300,9 @@
             </div>
 
             <button type="submit" class="btn btn-sand btn-block" id="form-kickoff-submit" disabled>Weiter</button>
-            <!-- TODO Phillip/Nick: Die hier erfassten Formulardaten werden aktuell nicht übertragen
-                 (kein Backend angebunden) - nur die Pflichtfeld-Prüfung läuft, danach Weiterleitung
-                 zum Stripe-Platzhalter-Link. Sobald eine Versand-Technik entschieden ist (siehe auch
-                 Partnerabend-Formular), hier echten Versand vor der Stripe-Weiterleitung ergänzen. -->
+            <!-- Zwischenlösung bis TBS-Hub steht: n8n-Workflow "TBS Kick-Off – Anmeldung → Google Sheet"
+                 (n8n.therapiebusinessschool.de) schreibt jede Anmeldung in das Sheet "TBS Kick-Off
+                 Anmeldungen", siehe n8n/README.md. Kein Double-Opt-in, siehe README für Grenzen. -->
           </form>
         </div>
 
@@ -437,9 +436,43 @@
         kickoffForm.reportValidity();
         return;
       }
-      // TODO Phillip/Nick: hier werden die Formulardaten aktuell nicht übertragen
-      // (kein Backend), siehe Kommentar im HTML. Weiterleitung zum Stripe-Link:
+
+      // Zwischenlösung bis der TBS-Hub steht: Anmeldedaten per Webhook an n8n
+      // (schreibt eine Zeile in ein Google Sheet, siehe n8n/kickoff-signup-workflow.json).
+      // keepalive:true sorgt dafür, dass der Request auch während der sofort
+      // folgenden Weiterleitung zu Stripe noch fertig abgeschickt wird. Bewusst
+      // "fire and forget": ein Webhook-Fehler darf die Anmeldung/Zahlung nicht
+      // blockieren, daher kein await und kein Abbruch bei Fehlern.
+      var webhookUrl = kickoffForm.dataset.signupWebhook;
+      if (webhookUrl && webhookUrl.indexOf('[') !== 0) {
+        var data = Object.fromEntries(new FormData(kickoffForm).entries());
+        data.event = 'kickoff-23-10-2026';
+        data.submitted_at = new Date().toISOString();
+        fetch(webhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+          keepalive: true
+        }).catch(function () { /* siehe Kommentar oben: bewusst kein Fehlerabbruch */ });
+      }
+
       window.location.href = kickoffForm.dataset.stripeUrl;
+    });
+  }
+
+  // Intro-Video: iframe erst per Klick auf das Poster-Bild einsetzen (YouTube-Facade),
+  // damit YouTube-Skripte/Cookies nicht schon beim Seitenaufruf ungefragt nachladen.
+  var videoEmbed = document.getElementById('kickoff-video');
+  if (videoEmbed) {
+    var videoTrigger = videoEmbed.querySelector('.video-embed-trigger');
+    videoTrigger.addEventListener('click', function () {
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube-nocookie.com/embed/' + videoEmbed.dataset.youtubeId + '?autoplay=1&rel=0';
+      iframe.title = 'Willkommen bei der Therapie Business School';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
+      videoEmbed.innerHTML = '';
+      videoEmbed.appendChild(iframe);
     });
   }
 

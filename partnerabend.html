@@ -123,17 +123,16 @@
         <h2 class="headline" style="margin:0 auto;">Der Abend im Überblick</h2>
       </div>
 
-      <div class="video-placeholder reveal" role="img" aria-label="Platzhalter für das Einladungsvideo zum Partner- & Expertenabend">
-        <div class="video-placeholder-inner">
+      <!-- YouTube-Facade wie auf index.html: zeigt nur das Poster-Bild + Play-Button, der echte
+           iframe wird erst per Klick nachgeladen. Gleiches Intro-Video wie beim Kick-Off. -->
+      <div class="video-embed reveal" id="partnerabend-video" data-youtube-id="PD6O6muVukY">
+        <button type="button" class="video-embed-trigger" aria-label="Video abspielen: Willkommen bei der Therapie Business School">
+          <img class="video-embed-poster" src="assets/video/kickoff-intro-poster.jpg" alt="" loading="lazy">
           <span class="video-play-icon" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 22 22"><path d="M6 4l12 7-12 7V4z" fill="currentColor"/></svg>
           </span>
-          <span class="video-placeholder-label">Einladungsvideo folgt in Kürze</span>
-        </div>
+        </button>
       </div>
-      <!-- TODO Phillip/Nick: Kurzes Einladungsvideo zum Partnerabend wird noch gedreht. Sobald es
-           vorliegt, diesen Platzhalter durch den echten Embed ersetzen (YouTube-iframe oder
-           <video>-Tag mit Poster, je nach Hosting-Entscheidung). -->
 
       <div class="simple-steps reveal">
         <div class="simple-step">
@@ -318,6 +317,22 @@
     document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
   } else {
     document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+  }
+
+  // Intro-Video: iframe erst per Klick auf das Poster-Bild einsetzen (YouTube-Facade),
+  // damit YouTube-Skripte/Cookies nicht schon beim Seitenaufruf ungefragt nachladen.
+  var videoEmbed = document.getElementById('partnerabend-video');
+  if (videoEmbed) {
+    var videoTrigger = videoEmbed.querySelector('.video-embed-trigger');
+    videoTrigger.addEventListener('click', function () {
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube-nocookie.com/embed/' + videoEmbed.dataset.youtubeId + '?autoplay=1&rel=0';
+      iframe.title = 'Willkommen bei der Therapie Business School';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
+      videoEmbed.innerHTML = '';
+      videoEmbed.appendChild(iframe);
+    });
   }
 
   // Anmelde-Dropdown: Klick auf "Jetzt anmelden" klappt das Formular in der

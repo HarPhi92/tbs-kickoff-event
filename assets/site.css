@@ -726,6 +726,49 @@
     letter-spacing: .02em;
   }
 
+  /* ---------- Video-Embed (echtes Intro-Video, YouTube-Facade) ----------
+     Zeigt bis zum Klick nur das Poster-Bild + Play-Button; der iframe (inkl.
+     YouTube-JS/Cookies) wird erst dann per JS eingesetzt (siehe Script am
+     Seitenende), statt ihn beim Seitenaufruf ungefragt mitzuladen. */
+  .video-embed {
+    width: 100%;
+    max-width: 760px;
+    margin: 40px auto 0;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    background: var(--navy);
+  }
+  .video-embed-trigger {
+    position: relative;
+    display: block;
+    width: 100%; height: 100%;
+    border: 0; padding: 0; margin: 0;
+    cursor: pointer;
+    background: none;
+  }
+  .video-embed-poster {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .video-embed-trigger .video-play-icon {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform .2s ease, background .2s ease;
+  }
+  .video-embed-trigger:hover .video-play-icon,
+  .video-embed-trigger:focus-visible .video-play-icon {
+    transform: translate(-50%, -50%) scale(1.08);
+    background: #FFF;
+  }
+  .video-embed iframe {
+    width: 100%; height: 100%;
+    border: 0; display: block;
+  }
+
   /* ---------- Einfacher Ablauf (Partnerabend, ohne Zigzag-Timeline: zu wenige
      Programmpunkte für die auf zwei Spalten angelegte .stops-Mechanik) ---------- */
   .simple-steps {
