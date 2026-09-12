@@ -20,7 +20,36 @@ Workflows mitgenutzt.
 - **Production-Webhook-URL:** `https://n8n.therapiebusinessschool.de/webhook/kickoff-signup`
   (in `index.html` bei `data-signup-webhook` eingetragen).
 - Kopfzeile Sheet: `timestamp | vorname | nachname | email | telefon | praxis |
-  fachbereich | herkunft | personenanzahl | einverstanden | event`
+  fachbereich | herkunft | personenanzahl | verpflegung | einverstanden | event`
+  (Spalte `verpflegung` neu, siehe unten – noch nicht im Live-Sheet/Workflow ergänzt).
+
+### TODO (Stand 12.09.2026, noch nicht live nachgezogen)
+
+Die Datei `kickoff-signup-workflow.json` in diesem Ordner enthält bereits die Zielversion
+für zwei offene Punkte – der **Live-Workflow in n8n ist aber noch der alte Stand** (nur
+Webhook → Sheets), das muss manuell nachgezogen werden:
+
+1. **Spalte `verpflegung`**: Im Formular wird seit dem Mengenwähler-Umbau ein Klartext-Feld
+   `verpflegung` mitgeschickt ("keine Verpflegung" oder "n Person(en)"). Im Live-Sheet fehlt
+   die Spalte noch, und im Sheets-Node unter *Values to Send* muss das Feld ergänzt werden
+   (**Falle 1 oben beachten**: Expression-Modus, nicht Fixed).
+2. **Bestätigungsmail ohne Verpflegung**: Neuer `IF`-Node ("Ohne Verpflegung?", prüft
+   `{{ $('Webhook').item.json.body.count }} == 0`) → bei 0 Personen ein neuer `Gmail`-Node
+   ("Bestätigungsmail senden") direkt nach dem Sheets-Node. Gleiches Mail-Design wie die
+   Stripe-Zahlungsbestätigung (von Marcel geliefert), Inhalt aber ohne Zahlungs-/Beleg-
+   Erwähnung, mit "Verpflegung: Ohne Mittagessen" statt Personenanzahl-Zeile. Nutzt die
+   bestehende Gmail-Credential "Gmail account" (bereits verbunden, siehe Blocker unten) –
+   **bei >0 Personen absichtlich keine Mail von hier**, die kommt stattdessen aus dem
+   separaten Stripe-Zahlungs-Workflow, sonst gäbe es doppelte Bestätigungsmails.
+   Setup: Workflow neu importieren (überschreibt den Live-Stand, vorher exportieren/
+   sichern) oder die zwei Nodes manuell nachbauen, Gmail-Credential zuweisen, testen,
+   publizieren.
+
+**Bekannter Blocker:** Der Gmail-Versand ist bei `info@therapiebusinessschool.de` durch ein
+fehlendes Google-Workspace-Admin-Recht blockiert (`400 Precondition check failed`, siehe
+Eintrag vom 06.–09.09.). Bis das mit Marcel geklärt ist, schlägt auch dieser neue Gmail-Node
+fehl – Workflow kann trotzdem schon vorbereitet/importiert werden, nur *Publish* + Live-Test
+warten darauf.
 
 ## Partnerabend (22.10., `partnerabend.html`)
 
@@ -40,6 +69,17 @@ Workflows mitgenutzt.
 - **CORS:** Allowed Origins auf `*` belassen.
 - Ende-zu-Ende per `curl` getestet: Testzeilen kamen korrekt ausgewertet im Sheet an,
   danach wieder gelöscht.
+
+### TODO (Stand 12.09.2026, noch nicht live nachgezogen)
+
+`partnerabend-signup-workflow.json` enthält bereits einen neuen `Gmail`-Node
+("Bestätigungsmail senden") direkt nach dem Sheets-Node – **der Live-Workflow hat den
+noch nicht**. Anders als beim Kick-Off-Workflow ist hier **kein IF-Node** nötig: Partnerabend
+geht nie über Stripe, jede Anmeldung bekommt also immer diese Mail. Gleiches Design wie die
+Kick-Off-/Stripe-Bestätigungsmail, Inhalt auf die Partnerabend-Felder angepasst (Rolle,
+Personenanzahl statt Verpflegung, 22.10./17:00–21:00 Uhr statt 23.10.). Nutzt dieselbe
+Gmail-Credential "Gmail account" wie der Kick-Off-Workflow – **derselbe Blocker gilt auch
+hier** (siehe Kick-Off-Abschnitt oben, Google-Workspace-Admin-Recht auf `info@` fehlt noch).
 
 ## Beide gemeinsam
 
