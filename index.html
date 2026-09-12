@@ -232,8 +232,8 @@
         <button type="button" class="btn btn-sand btn-block" id="anmeldung-toggle" aria-expanded="false" aria-controls="anmeldung-form-wrap">Jetzt anmelden</button>
 
         <div class="anmeldung-form-wrap" id="anmeldung-form-wrap">
-          <form class="pay-form" id="form-kickoff" novalidate data-stripe-url="[STRIPE_PAYMENT_LINK_URL – von Nick einsetzen]" data-signup-webhook="https://n8n.therapiebusinessschool.de/webhook/kickoff-signup">
-            <p class="form-note">Alle Felder sind Pflichtfelder. Nach dem Absenden geht es weiter zum Bezahlprozess für die Verpflegungspauschale.</p>
+          <form class="pay-form" id="form-kickoff" novalidate data-signup-webhook="https://n8n.therapiebusinessschool.de/webhook/kickoff-signup">
+            <p class="form-note">Alle Felder sind Pflichtfelder. Möchtest du die Mittagspause dazubuchen, geht es nach dem Absenden weiter zum Bezahlprozess für die Verpflegungspauschale.</p>
 
             <div class="field-row">
               <div class="field">
@@ -289,8 +289,14 @@
                 </select>
               </div>
               <div class="field">
-                <label for="k-count">Personenanzahl</label>
-                <input class="input" type="number" id="k-count" name="count" min="1" max="5" value="1" required>
+                <label for="k-qty-plus">Verpflegungspauschale (25&nbsp;€/Person)</label>
+                <div class="qty-control" aria-label="Personenanzahl für die Verpflegung auswählen">
+                  <button class="qty-btn" id="k-qty-minus" type="button" aria-label="Weniger">−</button>
+                  <span id="k-qty" class="qty" aria-live="polite" aria-atomic="true">0</span>
+                  <button class="qty-btn" id="k-qty-plus" type="button" aria-label="Mehr">+</button>
+                </div>
+                <input type="hidden" id="k-count" name="count" value="0">
+                <p class="qty-price" id="k-qty-price">Ohne Mittagessen – kostenfrei</p>
               </div>
             </div>
 
@@ -302,7 +308,10 @@
             <button type="submit" class="btn btn-sand btn-block" id="form-kickoff-submit" disabled>Weiter</button>
             <!-- Zwischenlösung bis TBS-Hub steht: n8n-Workflow "TBS Kick-Off – Anmeldung → Google Sheet"
                  (n8n.therapiebusinessschool.de) schreibt jede Anmeldung in das Sheet "TBS Kick-Off
-                 Anmeldungen", siehe n8n/README.md. Kein Double-Opt-in, siehe README für Grenzen. -->
+                 Anmeldungen", siehe n8n/README.md. Kein Double-Opt-in, siehe README für Grenzen.
+                 TODO Phillip: neues Feld "verpflegung" (Klartext "keine Verpflegung" bei 0 Personen,
+                 sonst "<n> Person(en)") muss in der n8n-Node "Values to Send" noch als Spalte ergänzt
+                 werden, sonst wird es von n8n stillschweigend verworfen. -->
           </form>
         </div>
 
@@ -312,9 +321,10 @@
         <a href="[Datenschutzerklärung-Link – einsetzen]">Datenschutzerklärung</a>.
       </p>
 
-      <!-- TODO Nick: echten Stripe Payment Link im Stripe-Dashboard anlegen und den
-           Platzhalter im Formular oben (data-stripe-url) ersetzen, sowie einen echten
-           Link zur Datenschutzerklärung oben einsetzen. -->
+      <!-- Stripe Payment Links (1-10 Personen, 25€/Person) sind von Marcel/Nick angelegt, siehe
+           kickoffStripeLinks im Script unten. Bei 0 Personen (keine Verpflegung) erfolgt keine
+           Weiterleitung zu Stripe, nur die Anmeldebestätigung (Popup).
+           TODO Nick: echten Link zur Datenschutzerklärung oben einsetzen. -->
     </div>
   </div>
 </section>
@@ -380,6 +390,20 @@
   </div>
 </footer>
 
+<!-- Anmelde-Bestätigung ohne Verpflegung: erscheint per JS anstelle der Stripe-Weiterleitung,
+     wenn bei der Anmeldung 0 Personen (keine Verpflegung) gewählt wurden. Gleiches Muster wie
+     partnerabend.html. Schließen per Button, Escape oder Klick auf den Hintergrund. -->
+<div class="confirm-overlay" id="signup-confirm" role="dialog" aria-modal="true" aria-labelledby="signup-confirm-title" hidden>
+  <div class="confirm-card">
+    <div class="confirm-icon" aria-hidden="true">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <h3 id="signup-confirm-title">Anmeldung bestätigt!</h3>
+    <p>Wir freuen uns auf dich – ganz ohne Mittagessen.</p>
+    <button type="button" class="btn btn-sand" id="signup-confirm-close">Schließen</button>
+  </div>
+</div>
+
 <script>
   // Hero reveal
   document.querySelector('.reveal-hero').classList.add('in');
@@ -402,15 +426,13 @@
 
   // Anmelde-Dropdown: Klick auf "Jetzt anmelden" klappt das Formular in der
   // Pay-Card auf. Erst nach erfolgreichem Absenden (Pflichtfelder ausgefüllt)
-  // geht es weiter zu Stripe.
+  // geht es weiter (Stripe bei Verpflegung, sonst Bestätigungs-Popup).
   var anmeldungToggle = document.getElementById('anmeldung-toggle');
   var anmeldungWrap = document.getElementById('anmeldung-form-wrap');
   if (anmeldungToggle && anmeldungWrap) {
     anmeldungToggle.addEventListener('click', function () {
       var isOpen = anmeldungWrap.classList.toggle('open');
       anmeldungToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      // Sobald das Formular offen ist, ist "Jetzt anmelden" nicht mehr der
-      // nächste Schritt (das ist jetzt "Weiter" im Formular) -> optisch inaktiv.
       anmeldungToggle.classList.toggle('is-inactive', isOpen);
       if (isOpen) {
         anmeldungWrap.querySelector('input, select').focus({ preventScroll: true });
@@ -418,10 +440,53 @@
     });
   }
 
+  // Verpflegungspauschale: Mengenwähler 0-10 innerhalb des Anmeldeformulars.
+  // 0 = keine Verpflegung (kostenfrei, keine Stripe-Weiterleitung), 1-10 = ein
+  // fertiger Stripe-Payment-Link pro Personenzahl (Stripe Payment Links können
+  // keine dynamische Mengenpreisberechnung, daher von Marcel/Nick je Anzahl
+  // einzeln angelegt).
+  var kickoffStripeLinks = {
+    1: 'https://buy.stripe.com/14AeV6baF17p4VN4chgrS00',
+    2: 'https://buy.stripe.com/cNi8wI0w16rJag7eQVgrS01',
+    3: 'https://buy.stripe.com/cNi7sE2E9g2j73V38dgrS02',
+    4: 'https://buy.stripe.com/cNieV6baFdUb87ZbEJgrS03',
+    5: 'https://buy.stripe.com/3cI5kw5QlbM32NFdMRgrS04',
+    6: 'https://buy.stripe.com/9B67sEceJdUbewneQVgrS05',
+    7: 'https://buy.stripe.com/dRm14g1A55nFewnbEJgrS06',
+    8: 'https://buy.stripe.com/eVq5kw2E917p0Fx9wBgrS07',
+    9: 'https://buy.stripe.com/4gM8wI92xg2j5ZRfUZgrS08',
+    10: 'https://buy.stripe.com/14AfZa1A58zRcofaAFgrS09'
+  };
+  var kickoffQtyEl = document.getElementById('k-qty');
+  var kickoffCountInput = document.getElementById('k-count');
+  var kickoffMinus = document.getElementById('k-qty-minus');
+  var kickoffPlus = document.getElementById('k-qty-plus');
+  var kickoffPriceText = document.getElementById('k-qty-price');
+  if (kickoffQtyEl && kickoffCountInput && kickoffMinus && kickoffPlus && kickoffPriceText) {
+    var kickoffFmt = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' });
+    var kickoffClamp = function (v, min, max) { return Math.max(min, Math.min(max, v)); };
+
+    var kickoffSetQty = function (v) {
+      var val = kickoffClamp(v, 0, 10);
+      kickoffQtyEl.textContent = String(val);
+      kickoffCountInput.value = String(val);
+      kickoffMinus.disabled = val <= 0;
+      kickoffPlus.disabled = val >= 10;
+      kickoffPriceText.textContent = val === 0
+        ? 'Ohne Mittagessen – kostenfrei'
+        : val + ' × 25,00 € = ' + kickoffFmt.format(val * 25);
+    };
+
+    kickoffMinus.addEventListener('click', function () { kickoffSetQty(Number(kickoffQtyEl.textContent) - 1); });
+    kickoffPlus.addEventListener('click', function () { kickoffSetQty(Number(kickoffQtyEl.textContent) + 1); });
+
+    kickoffSetQty(0);
+  }
+
   var kickoffForm = document.getElementById('form-kickoff');
   if (kickoffForm) {
     // "Weiter" bleibt gesperrt, bis das Einverständnis-Häkchen gesetzt ist -
-    // erst dann ist der nächste Schritt (Weiterleitung zu Stripe) erlaubt.
+    // erst dann ist der nächste Schritt (Stripe oder Bestätigung) erlaubt.
     var kickoffConsent = document.getElementById('k-consent');
     var kickoffSubmit = document.getElementById('form-kickoff-submit');
     if (kickoffConsent && kickoffSubmit) {
@@ -437,6 +502,8 @@
         return;
       }
 
+      var count = Number(kickoffCountInput ? kickoffCountInput.value : 0);
+
       // Zwischenlösung bis der TBS-Hub steht: Anmeldedaten per Webhook an n8n
       // (schreibt eine Zeile in ein Google Sheet, siehe n8n/kickoff-signup-workflow.json).
       // keepalive:true sorgt dafür, dass der Request auch während der sofort
@@ -444,10 +511,11 @@
       // "fire and forget": ein Webhook-Fehler darf die Anmeldung/Zahlung nicht
       // blockieren, daher kein await und kein Abbruch bei Fehlern.
       var webhookUrl = kickoffForm.dataset.signupWebhook;
-      if (webhookUrl && webhookUrl.indexOf('[') !== 0) {
+      if (webhookUrl) {
         var data = Object.fromEntries(new FormData(kickoffForm).entries());
         data.event = 'kickoff-23-10-2026';
         data.submitted_at = new Date().toISOString();
+        data.verpflegung = count > 0 ? (count + ' Person(en)') : 'keine Verpflegung';
         fetch(webhookUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -456,7 +524,39 @@
         }).catch(function () { /* siehe Kommentar oben: bewusst kein Fehlerabbruch */ });
       }
 
-      window.location.href = kickoffForm.dataset.stripeUrl;
+      var stripeUrl = kickoffStripeLinks[count];
+      if (count > 0 && stripeUrl) {
+        window.location.href = stripeUrl;
+      } else {
+        openSignupConfirm();
+        kickoffForm.reset();
+        if (kickoffCountInput) kickoffCountInput.value = '0';
+        if (kickoffQtyEl) kickoffQtyEl.textContent = '0';
+        if (kickoffSubmit) kickoffSubmit.disabled = true;
+      }
+    });
+  }
+
+  // Anmelde-Bestätigung ohne Verpflegung (Popup statt Stripe-Weiterleitung).
+  var signupConfirm = document.getElementById('signup-confirm');
+  function openSignupConfirm() {
+    if (!signupConfirm) return;
+    signupConfirm.hidden = false;
+    document.body.style.overflow = 'hidden';
+    document.getElementById('signup-confirm-close').focus();
+  }
+  function closeSignupConfirm() {
+    if (!signupConfirm) return;
+    signupConfirm.hidden = true;
+    document.body.style.overflow = '';
+  }
+  if (signupConfirm) {
+    document.getElementById('signup-confirm-close').addEventListener('click', closeSignupConfirm);
+    signupConfirm.addEventListener('click', function (e) {
+      if (e.target === signupConfirm) closeSignupConfirm();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !signupConfirm.hidden) closeSignupConfirm();
     });
   }
 

@@ -232,7 +232,6 @@
             </div>
 
             <button type="submit" class="btn btn-sand btn-block" id="form-partnerabend-submit" disabled>Verbindlich anmelden</button>
-            <p class="form-status" id="a1-status">Danke für deine verbindliche Anmeldung! Wir bestätigen dir deinen Platz in Kürze persönlich.</p>
           </form>
         </div>
 
@@ -298,6 +297,20 @@
     <p class="foot-fine">Therapie Business School · Myokraft, Neustraße 15, 47623 Kevelaer</p>
   </div>
 </footer>
+
+<!-- Anmelde-Bestätigung: erscheint per JS anstelle des bisherigen unauffälligen
+     Inline-Textes unter dem Formular. Schließen per Button, Escape oder Klick auf
+     den Hintergrund. -->
+<div class="confirm-overlay" id="signup-confirm" role="dialog" aria-modal="true" aria-labelledby="signup-confirm-title" hidden>
+  <div class="confirm-card">
+    <div class="confirm-icon" aria-hidden="true">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <h3 id="signup-confirm-title">Anmeldung bestätigt!</h3>
+    <p>Wir freuen uns auf dich!</p>
+    <button type="button" class="btn btn-sand" id="signup-confirm-close">Schließen</button>
+  </div>
+</div>
 
 <script>
   // Hero reveal
@@ -383,8 +396,31 @@
           body: JSON.stringify(data)
         }).catch(function () { /* fire-and-forget, siehe Kommentar oben */ });
       }
-      document.getElementById('a1-status').classList.add('show');
+      openSignupConfirm();
+      partnerForm.reset();
       partnerSubmit.disabled = true;
+    });
+  }
+
+  var signupConfirm = document.getElementById('signup-confirm');
+  function openSignupConfirm() {
+    if (!signupConfirm) return;
+    signupConfirm.hidden = false;
+    document.body.style.overflow = 'hidden';
+    document.getElementById('signup-confirm-close').focus();
+  }
+  function closeSignupConfirm() {
+    if (!signupConfirm) return;
+    signupConfirm.hidden = true;
+    document.body.style.overflow = '';
+  }
+  if (signupConfirm) {
+    document.getElementById('signup-confirm-close').addEventListener('click', closeSignupConfirm);
+    signupConfirm.addEventListener('click', function (e) {
+      if (e.target === signupConfirm) closeSignupConfirm();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !signupConfirm.hidden) closeSignupConfirm();
     });
   }
 </script>

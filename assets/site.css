@@ -75,7 +75,7 @@
     justify-content: space-between;
     gap: 16px;
   }
-  .nav-logo { display: flex; align-items: center; gap: 10px; }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
   .nav-logo-icon { height: 26px; width: auto; flex-shrink: 0; }
   .nav-logo-text {
     color: #FFF;
@@ -474,13 +474,35 @@
 
   .form-card .btn { margin-top: 24px; }
 
-  .form-status {
-    margin-top: 14px;
-    font-size: .84rem;
-    color: var(--ink-soft);
-    display: none;
+  /* ---------- Anmelde-Bestätigung (Modal) ---------- */
+  .confirm-overlay {
+    position: fixed; inset: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    background: rgba(5, 29, 69, .55);
+    backdrop-filter: blur(3px);
   }
-  .form-status.show { display: block; }
+  .confirm-overlay[hidden] { display: none; }
+  .confirm-card {
+    background: var(--surface-2);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 44px 36px;
+    max-width: 380px;
+    width: 100%;
+    text-align: center;
+  }
+  .confirm-icon {
+    width: 56px; height: 56px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--sand);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .confirm-card h3 { font-size: 1.4rem; color: var(--navy); margin: 0; }
+  .confirm-card p { margin: 12px 0 0; color: var(--ink-soft); font-size: .95rem; }
+  .confirm-card .btn { margin-top: 26px; }
 
   /* ---------- Journey: Intro + Programm + Eckdaten ---------- */
   .journey { position: relative; background: var(--bg); }
@@ -685,13 +707,42 @@
     text-align: left;
     transition: max-height .4s cubic-bezier(.16,1,.3,1);
   }
-  .anmeldung-form-wrap.open { max-height: 900px; }
+  .anmeldung-form-wrap.open { max-height: 1600px; }
   .pay-card .pay-form { margin-top: 22px; }
   .pay-card .field label { color: #FFF; }
   .pay-card .field .optional { color: rgba(255,255,255,.55); }
   .pay-card .form-note { color: rgba(255,255,255,.68); }
   .pay-card .consent label { color: rgba(255,255,255,.72); }
   .pay-card .pay-form .btn { margin-top: 20px; }
+
+  /* ---------- Verpflegungspauschale: Mengenwähler im Anmeldeformular ---------- */
+  .qty-control {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: 999px;
+    padding: 6px 8px;
+  }
+  .qty-btn {
+    all: unset;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--sand);
+    color: var(--navy);
+    font-size: 18px;
+    font-weight: 700;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: opacity .15s ease, transform .12s ease;
+  }
+  .qty-btn:hover { transform: translateY(-1px); }
+  .qty-btn:disabled { opacity: .35; cursor: not-allowed; transform: none; }
+  .qty { font-weight: 700; min-width: 22px; text-align: center; color: #FFF; }
+  .qty-price { margin-top: 8px; font-size: .8rem; color: rgba(255,255,255,.6); }
 
   /* ---------- Video-Platzhalter (Intro-/Einladungsvideo, noch nicht gedreht) ---------- */
   .video-placeholder {
