@@ -107,7 +107,7 @@
   <!-- Intro -->
   <section class="journey-station">
     <div class="wrap">
-      <p class="journey-intro reveal">
+      <p class="journey-intro reveal" style="text-align:center;">
         Auch dieser Abend steht für den offiziellen Start der Therapie Business School &ndash; gemeinsam
         mit unseren wichtigsten Partnern, Experten und Freunden. Kein Publikum, kein Frontalvortrag,
         sondern echtes Kennenlernen: viel Raum für Gespräche unter Menschen, die die Therapiebranche bewegen.
@@ -339,7 +339,7 @@
     var videoTrigger = videoEmbed.querySelector('.video-embed-trigger');
     videoTrigger.addEventListener('click', function () {
       var iframe = document.createElement('iframe');
-      iframe.src = 'https://www.youtube-nocookie.com/embed/' + videoEmbed.dataset.youtubeId + '?autoplay=1&rel=0';
+      iframe.src = 'https://www.youtube-nocookie.com/embed/' + videoEmbed.dataset.youtubeId + '?autoplay=1&rel=0&cc_load_policy=0';
       iframe.title = 'Willkommen bei der Therapie Business School';
       iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
       iframe.allowFullscreen = true;
