@@ -225,15 +225,15 @@
       <div class="pay-card">
         <h3>Sichere dir jetzt deinen Platz</h3>
         <p class="pay-desc">
-          Die Teilnahme am Event ist kostenfrei. Für die Mittagspause in der Myokraftbar berechnen wir
-          25&nbsp;Euro Verpflegungspauschale.
+          Die Teilnahme am Event selbst ist kostenfrei. Für die Mittagspause in der Myokraftbar
+          berechnen wir 25&nbsp;Euro pro Person.
         </p>
         <div class="pay-limit">Anmeldung bis <strong>15. Oktober 2026</strong>, limitiert auf <strong>100 Plätze</strong>.</div>
         <button type="button" class="btn btn-sand btn-block" id="anmeldung-toggle" aria-expanded="false" aria-controls="anmeldung-form-wrap">Jetzt anmelden</button>
 
         <div class="anmeldung-form-wrap" id="anmeldung-form-wrap">
-          <form class="pay-form" id="form-kickoff" novalidate data-signup-webhook="https://n8n.therapiebusinessschool.de/webhook/kickoff-signup">
-            <p class="form-note">Alle Felder sind Pflichtfelder. Möchtest du die Mittagspause dazubuchen, geht es nach dem Absenden weiter zum Bezahlprozess für die Verpflegungspauschale.</p>
+          <form class="pay-form" id="form-kickoff" novalidate data-anmeldung-endpoint="https://n8n.therapiebusinessschool.de/webhook/kickoff-anmeldung">
+            <p class="form-note">Alle Felder sind Pflichtfelder. Nach dem Absenden geht es direkt weiter zur Bezahlung &ndash; deine Angaben sind dort schon ausgefüllt.</p>
 
             <div class="field-row">
               <div class="field">
@@ -275,6 +275,25 @@
               </div>
             </div>
 
+            <!-- Rechnungsadresse: wird an Stripe durchgereicht, damit der Kunde sie im Checkout
+                 nicht erneut eintippen muss. Pflicht, weil Stripe daraus die Rechnung erstellt
+                 und die automatische Steuerberechnung eine vollständige Adresse braucht. -->
+            <div class="field">
+              <label for="k-street">Straße und Hausnummer</label>
+              <input class="input" type="text" id="k-street" name="street" autocomplete="street-address" required>
+            </div>
+
+            <div class="field-row field-row-plz">
+              <div class="field">
+                <label for="k-zip">PLZ</label>
+                <input class="input" type="text" id="k-zip" name="zip" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}" required>
+              </div>
+              <div class="field">
+                <label for="k-city">Ort</label>
+                <input class="input" type="text" id="k-city" name="city" autocomplete="address-level2" required>
+              </div>
+            </div>
+
             <div class="field-row">
               <div class="field">
                 <label for="k-source">Wie hast du von uns erfahren?</label>
@@ -289,14 +308,14 @@
                 </select>
               </div>
               <div class="field">
-                <label for="k-qty-plus">Verpflegungspauschale (25&nbsp;€/Person)</label>
-                <div class="qty-control" aria-label="Personenanzahl für die Verpflegung auswählen">
+                <label for="k-qty-plus">Anzahl Teilnehmer</label>
+                <div class="qty-control" aria-label="Anzahl der Teilnehmer auswählen">
                   <button class="qty-btn" id="k-qty-minus" type="button" aria-label="Weniger">−</button>
-                  <span id="k-qty" class="qty" aria-live="polite" aria-atomic="true">0</span>
+                  <span id="k-qty" class="qty" aria-live="polite" aria-atomic="true">1</span>
                   <button class="qty-btn" id="k-qty-plus" type="button" aria-label="Mehr">+</button>
                 </div>
-                <input type="hidden" id="k-count" name="count" value="0">
-                <p class="qty-price" id="k-qty-price">Ohne Mittagessen – kostenfrei</p>
+                <input type="hidden" id="k-count" name="count" value="1">
+                <p class="qty-price" id="k-qty-price">1 × 25,00 € = 25,00 €</p>
               </div>
             </div>
 
@@ -305,13 +324,15 @@
               <label for="k-consent">Ich bin einverstanden, dass meine Angaben zur Bearbeitung dieser Anmeldung gespeichert werden.</label>
             </div>
 
-            <button type="submit" class="btn btn-sand btn-block" id="form-kickoff-submit" disabled>Weiter</button>
-            <!-- Zwischenlösung bis TBS-Hub steht: n8n-Workflow "TBS Kick-Off – Anmeldung → Google Sheet"
-                 (n8n.therapiebusinessschool.de) schreibt jede Anmeldung in das Sheet "TBS Kick-Off
-                 Anmeldungen", siehe n8n/README.md. Kein Double-Opt-in, siehe README für Grenzen.
-                 TODO Phillip: neues Feld "verpflegung" (Klartext "keine Verpflegung" bei 0 Personen,
-                 sonst "<n> Person(en)") muss in der n8n-Node "Values to Send" noch als Spalte ergänzt
-                 werden, sonst wird es von n8n stillschweigend verworfen. -->
+            <p class="form-error" id="form-kickoff-error" role="alert" hidden></p>
+
+            <button type="submit" class="btn btn-sand btn-block" id="form-kickoff-submit" disabled>Weiter zur Bezahlung</button>
+            <!-- Zwischenlösung bis TBS-Hub steht: der n8n-Workflow hinter
+                 /webhook/kickoff-anmeldung legt die Anmeldung im Sheet "TBS Kick-Off Anmeldungen"
+                 an (Status "offen"), erzeugt bei Stripe einen Customer mit diesen Daten und eine
+                 Checkout-Session, und antwortet mit deren URL. Nach bezahltem Checkout setzt der
+                 Stripe-Webhook dieselbe Zeile über die Checkout-ID auf "bezahlt".
+                 Siehe n8n/README.md. Kein Double-Opt-in, siehe README für Grenzen. -->
           </form>
         </div>
 
@@ -321,9 +342,9 @@
         <a href="[Datenschutzerklärung-Link – einsetzen]">Datenschutzerklärung</a>.
       </p>
 
-      <!-- Stripe Payment Links (1-10 Personen, 25€/Person) sind von Marcel/Nick angelegt, siehe
-           kickoffStripeLinks im Script unten. Bei 0 Personen (keine Verpflegung) erfolgt keine
-           Weiterleitung zu Stripe, nur die Anmeldebestätigung (Popup).
+      <!-- Die 10 festen Stripe-Payment-Links (einer je Personenzahl) sind abgelöst: n8n erzeugt
+           die Checkout-Session dynamisch mit quantity = Anzahl auf dem Preis
+           price_1UDOII4seyIpKu5FcdP4dbfI (25 € inkl. MwSt).
            TODO Nick: echten Link zur Datenschutzerklärung oben einsetzen. -->
     </div>
   </div>
@@ -390,19 +411,9 @@
   </div>
 </footer>
 
-<!-- Anmelde-Bestätigung ohne Verpflegung: erscheint per JS anstelle der Stripe-Weiterleitung,
-     wenn bei der Anmeldung 0 Personen (keine Verpflegung) gewählt wurden. Gleiches Muster wie
-     partnerabend.html. Schließen per Button, Escape oder Klick auf den Hintergrund. -->
-<div class="confirm-overlay" id="signup-confirm" role="dialog" aria-modal="true" aria-labelledby="signup-confirm-title" hidden>
-  <div class="confirm-card">
-    <div class="confirm-icon" aria-hidden="true">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </div>
-    <h3 id="signup-confirm-title">Anmeldung bestätigt!</h3>
-    <p>Wir freuen uns auf dich! Du solltest in Kürze eine Bestätigungsmail zur Veranstaltung erhalten.</p>
-    <button type="button" class="btn btn-sand" id="signup-confirm-close">Schließen</button>
-  </div>
-</div>
+<!-- Das frühere Bestätigungs-Popup ist entfallen: seit jede Anmeldung über Stripe läuft
+     (mind. 1 Person), endet der Ablauf immer auf /danke-fuer-deine-anmeldung/.
+     Das .confirm-overlay-CSS bleibt bestehen - partnerabend/ nutzt es weiterhin. -->
 
 <script>
   // Hero reveal
@@ -440,23 +451,11 @@
     });
   }
 
-  // Verpflegungspauschale: Mengenwähler 0-10 innerhalb des Anmeldeformulars.
-  // 0 = keine Verpflegung (kostenfrei, keine Stripe-Weiterleitung), 1-10 = ein
-  // fertiger Stripe-Payment-Link pro Personenzahl (Stripe Payment Links können
-  // keine dynamische Mengenpreisberechnung, daher von Marcel/Nick je Anzahl
-  // einzeln angelegt).
-  var kickoffStripeLinks = {
-    1: 'https://buy.stripe.com/14AeV6baF17p4VN4chgrS00',
-    2: 'https://buy.stripe.com/cNi8wI0w16rJag7eQVgrS01',
-    3: 'https://buy.stripe.com/cNi7sE2E9g2j73V38dgrS02',
-    4: 'https://buy.stripe.com/cNieV6baFdUb87ZbEJgrS03',
-    5: 'https://buy.stripe.com/3cI5kw5QlbM32NFdMRgrS04',
-    6: 'https://buy.stripe.com/9B67sEceJdUbewneQVgrS05',
-    7: 'https://buy.stripe.com/dRm14g1A55nFewnbEJgrS06',
-    8: 'https://buy.stripe.com/eVq5kw2E917p0Fx9wBgrS07',
-    9: 'https://buy.stripe.com/4gM8wI92xg2j5ZRfUZgrS08',
-    10: 'https://buy.stripe.com/14AfZa1A58zRcofaAFgrS09'
-  };
+  // Teilnehmerzahl: Mengenwähler 1-10 innerhalb des Anmeldeformulars. Jede Anmeldung
+  // läuft über Stripe, deshalb ist 1 das Minimum. Die Checkout-Session wird von n8n
+  // mit quantity = Anzahl erzeugt; die früheren zehn festen Payment-Links entfallen.
+  var KICKOFF_MIN_QTY = 1;
+  var KICKOFF_MAX_QTY = 10;
   var kickoffQtyEl = document.getElementById('k-qty');
   var kickoffCountInput = document.getElementById('k-count');
   var kickoffMinus = document.getElementById('k-qty-minus');
@@ -467,20 +466,18 @@
     var kickoffClamp = function (v, min, max) { return Math.max(min, Math.min(max, v)); };
 
     var kickoffSetQty = function (v) {
-      var val = kickoffClamp(v, 0, 10);
+      var val = kickoffClamp(v, KICKOFF_MIN_QTY, KICKOFF_MAX_QTY);
       kickoffQtyEl.textContent = String(val);
       kickoffCountInput.value = String(val);
-      kickoffMinus.disabled = val <= 0;
-      kickoffPlus.disabled = val >= 10;
-      kickoffPriceText.textContent = val === 0
-        ? 'Ohne Mittagessen – kostenfrei'
-        : val + ' × 25,00 € = ' + kickoffFmt.format(val * 25);
+      kickoffMinus.disabled = val <= KICKOFF_MIN_QTY;
+      kickoffPlus.disabled = val >= KICKOFF_MAX_QTY;
+      kickoffPriceText.textContent = val + ' × 25,00 € = ' + kickoffFmt.format(val * 25);
     };
 
     kickoffMinus.addEventListener('click', function () { kickoffSetQty(Number(kickoffQtyEl.textContent) - 1); });
     kickoffPlus.addEventListener('click', function () { kickoffSetQty(Number(kickoffQtyEl.textContent) + 1); });
 
-    kickoffSetQty(0);
+    kickoffSetQty(KICKOFF_MIN_QTY);
   }
 
   var kickoffForm = document.getElementById('form-kickoff');
@@ -495,70 +492,87 @@
       });
     }
 
+    // Anders als früher ist der Request jetzt blockierend: n8n legt die Anmeldung an
+    // und erzeugt die Stripe-Checkout-Session, und erst dessen Antwort (checkout_url)
+    // sagt uns, wohin weitergeleitet wird. Ein Fehler darf deshalb nicht verschluckt
+    // werden - er wird angezeigt, die Eingaben bleiben stehen.
+    var kickoffError = document.getElementById('form-kickoff-error');
+    var kickoffBusy = false;
+
+    var kickoffShowError = function (msg) {
+      if (!kickoffError) return;
+      kickoffError.textContent = msg;
+      kickoffError.hidden = false;
+    };
+    var kickoffClearError = function () {
+      if (!kickoffError) return;
+      kickoffError.hidden = true;
+      kickoffError.textContent = '';
+    };
+
     kickoffForm.addEventListener('submit', function (e) {
       e.preventDefault();
+      // Doppelklick-Schutz: der Request dauert 1-2 Sekunden, in denen der Button
+      // deaktiviert ist. Das Flag fängt zusätzlich ein Enter währenddessen ab.
+      if (kickoffBusy) return;
+      kickoffClearError();
       if (!kickoffForm.checkValidity()) {
         kickoffForm.reportValidity();
         return;
       }
 
-      var count = Number(kickoffCountInput ? kickoffCountInput.value : 0);
-
-      // Zwischenlösung bis der TBS-Hub steht: Anmeldedaten per Webhook an n8n
-      // (schreibt eine Zeile in ein Google Sheet, siehe n8n/kickoff-signup-workflow.json).
-      // keepalive:true sorgt dafür, dass der Request auch während der sofort
-      // folgenden Weiterleitung zu Stripe noch fertig abgeschickt wird. Bewusst
-      // "fire and forget": ein Webhook-Fehler darf die Anmeldung/Zahlung nicht
-      // blockieren, daher kein await und kein Abbruch bei Fehlern.
-      var webhookUrl = kickoffForm.dataset.signupWebhook;
-      if (webhookUrl) {
-        var data = Object.fromEntries(new FormData(kickoffForm).entries());
-        data.event = 'kickoff-23-10-2026';
-        data.submitted_at = new Date().toISOString();
-        data.verpflegung = count > 0 ? (count + ' Person(en)') : 'keine Verpflegung';
-        fetch(webhookUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
-          keepalive: true
-        }).catch(function () { /* siehe Kommentar oben: bewusst kein Fehlerabbruch */ });
+      var endpoint = kickoffForm.dataset.anmeldungEndpoint;
+      if (!endpoint) {
+        kickoffShowError('Die Anmeldung ist gerade nicht erreichbar. Bitte schreib uns an info@therapiebusinessschool.de.');
+        return;
       }
 
-      var stripeUrl = kickoffStripeLinks[count];
-      if (count > 0 && stripeUrl) {
-        window.location.href = stripeUrl;
-      } else {
-        openSignupConfirm();
-        kickoffForm.reset();
-        if (kickoffCountInput) kickoffCountInput.value = '0';
-        if (kickoffQtyEl) kickoffQtyEl.textContent = '0';
-        if (kickoffSubmit) kickoffSubmit.disabled = true;
+      var data = Object.fromEntries(new FormData(kickoffForm).entries());
+      data.count = Number(data.count);
+      data.event = 'kickoff-23-10-2026';
+      data.submitted_at = new Date().toISOString();
+
+      kickoffBusy = true;
+      var submitLabel = kickoffSubmit ? kickoffSubmit.textContent : '';
+      if (kickoffSubmit) {
+        kickoffSubmit.disabled = true;
+        kickoffSubmit.textContent = 'Einen Moment …';
       }
+
+      var restore = function () {
+        kickoffBusy = false;
+        if (kickoffSubmit) {
+          kickoffSubmit.disabled = false;
+          kickoffSubmit.textContent = submitLabel;
+        }
+      };
+
+      fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function (res) {
+        return res.json().catch(function () { return {}; }).then(function (body) {
+          return { ok: res.ok, body: body };
+        });
+      }).then(function (res) {
+        if (res.ok && res.body && res.body.checkout_url) {
+          // Bewusst kein restore(): der Button bleibt gesperrt, bis der Browser die
+          // Seite verlässt - sonst lässt sich in der Wartezeit ein zweites Mal senden.
+          window.location.href = res.body.checkout_url;
+          return;
+        }
+        restore();
+        kickoffShowError((res.body && res.body.error)
+          ? res.body.error
+          : 'Die Anmeldung konnte nicht gespeichert werden. Bitte versuch es noch einmal.');
+      }).catch(function () {
+        restore();
+        kickoffShowError('Keine Verbindung zum Server. Bitte prüf deine Internetverbindung und versuch es noch einmal.');
+      });
     });
   }
 
-  // Anmelde-Bestätigung ohne Verpflegung (Popup statt Stripe-Weiterleitung).
-  var signupConfirm = document.getElementById('signup-confirm');
-  function openSignupConfirm() {
-    if (!signupConfirm) return;
-    signupConfirm.hidden = false;
-    document.body.style.overflow = 'hidden';
-    document.getElementById('signup-confirm-close').focus();
-  }
-  function closeSignupConfirm() {
-    if (!signupConfirm) return;
-    signupConfirm.hidden = true;
-    document.body.style.overflow = '';
-  }
-  if (signupConfirm) {
-    document.getElementById('signup-confirm-close').addEventListener('click', closeSignupConfirm);
-    signupConfirm.addEventListener('click', function (e) {
-      if (e.target === signupConfirm) closeSignupConfirm();
-    });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && !signupConfirm.hidden) closeSignupConfirm();
-    });
-  }
 
   // Intro-Video: iframe erst per Klick auf das Poster-Bild einsetzen (YouTube-Facade),
   // damit YouTube-Skripte/Cookies nicht schon beim Seitenaufruf ungefragt nachladen.

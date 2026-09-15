@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anmeldung bestätigt · Kick-Off Event der Therapie Business School</title>
+<meta name="description" content="Deine Anmeldung zum Kick-Off Event der Therapie Business School am 23. Oktober 2026 in Kevelaer ist bestätigt.">
+
+<!-- Landeseite nach erfolgreichem Stripe-Checkout (success_url der Checkout-Session).
+     Bewusst nicht indexieren: die Seite ist ohne Anmeldung sinnlos und würde sonst in
+     der Suche neben der eigentlichen Landingpage auftauchen. -->
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:locale" content="de_DE">
+
+<!-- Favicon: eingebettetes TBS-Signet-SVG aus dem Branding Guide §2.2 als Inline-Data-URI, da keine favicon.ico/.png-Dateien lokal vorliegen -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%23051D45'/%3E%3Cg transform='translate(76.00,198.80) scale(1.04197)'%3E%3Cpath d='M319.54,57.88c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03v-51.91h85.03Z' fill='%23FFF'/%3E%3Cpath d='M202.58,57.88c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03v-51.91h85.03,0Z' fill='%23FFF'/%3E%3Cpath d='M110.36,109.79H.03c.94-29.08,24.3-52.43,53.38-53.38,30.47-.99,55.97,22.91,56.96,53.38h0Z' fill='%23FFF'/%3E%3Cpath d='M260.46,51.91c-14.34,0-25.96-11.62-25.96-25.96S246.13,0,260.46,0h85.03v51.91h-85.03Z' fill='%23FFF'/%3E%3Cpath d='M202.58,0c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03V0h85.03Z' fill='%23FFF'/%3E%3Crect width='110.39' height='51.91' fill='%23FFF'/%3E%3C/g%3E%3C/svg%3E">
+
+<!-- Montserrat (Pflicht laut TBS-Branding-Guide §4 – ohne diesen Link rendert die Seite in Arial) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="/assets/site.css">
+
+<!-- Ohne JS bleiben .reveal-Elemente auf opacity:0 stehen. Auf dieser Seite wäre das
+     besonders ärgerlich: der Kunde hat gerade bezahlt und sähe eine leere Seite. -->
+<noscript>
+<style>
+  .page-intro h1, .reveal {
+    animation: noscript-rise .8s cubic-bezier(.16,1,.3,1) both !important;
+  }
+  @keyframes noscript-rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: none; }
+  }
+</style>
+</noscript>
+
+<style>
+  /* Nur auf dieser Seite gebraucht: das Häkchen-Emblem über der Überschrift.
+     Greift auf .confirm-icon zurück (gleiche Maße/Farben), steht hier aber auf
+     Navy statt in einer weißen Karte - deshalb die invertierte Füllung. */
+  .danke-icon {
+    width: 64px; height: 64px;
+    margin: 0 auto 22px;
+    border-radius: 50%;
+    background: var(--sand);
+    color: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .danke-lead {
+    margin: 18px auto 0;
+    max-width: 52ch;
+    text-align: center;
+    color: rgba(255,255,255,.78);
+    font-size: 1.02rem;
+    line-height: 1.7;
+  }
+  .danke-section { padding: 64px 0; }
+  .danke-section h2 {
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
+    color: var(--navy);
+    text-align: center;
+    margin: 0;
+  }
+  .danke-hint {
+    margin-top: 34px;
+    background: var(--surface-2);
+    border-left: 4px solid var(--sand);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+    padding: 20px 24px;
+    color: var(--ink-soft);
+    font-size: .95rem;
+    line-height: 1.7;
+  }
+  .danke-hint strong { color: var(--navy); }
+  .danke-actions {
+    margin-top: 34px;
+    display: flex; flex-wrap: wrap; gap: 14px; justify-content: center;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="wrap">
+    <a class="nav-logo" href="/" aria-label="Zur Kick-Off-Startseite">
+      <svg class="nav-logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 345.5 109.8" role="img" aria-label="TBS Signet">
+        <path d="M319.54,57.88c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03v-51.91h85.03Z" fill="#FFF"/>
+        <path d="M202.58,57.88c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03v-51.91h85.03,0Z" fill="#FFF"/>
+        <path d="M110.36,109.79H.03c.94-29.08,24.3-52.43,53.38-53.38,30.47-.99,55.97,22.91,56.96,53.38h0Z" fill="#FFF"/>
+        <path d="M260.46,51.91c-14.34,0-25.96-11.62-25.96-25.96S246.13,0,260.46,0h85.03v51.91h-85.03Z" fill="#FFF"/>
+        <path d="M202.58,0c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03V0h85.03Z" fill="#FFF"/>
+        <rect width="110.39" height="51.91" fill="#FFF"/>
+      </svg>
+      <span class="nav-logo-text">Therapie Business School</span>
+    </a>
+    <div class="nav-links">
+      <a href="/">Zur Startseite</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ BESTÄTIGUNG ============ -->
+<header class="page-intro reveal-hero in">
+  <div class="wrap wrap-narrow">
+    <div class="danke-icon" aria-hidden="true">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <h1>Deine Anmeldung ist bestätigt</h1>
+    <p class="danke-lead">
+      Vielen Dank &ndash; deine Zahlung ist bei uns eingegangen und dein Platz beim Kick-Off Event
+      ist gesichert. Eine Bestätigungsmail mit allen Details ist auf dem Weg zu dir, der
+      Zahlungsbeleg kommt separat.
+    </p>
+  </div>
+</header>
+
+<!-- ============ EVENT-ECKDATEN ============ -->
+<section class="danke-section">
+  <div class="wrap wrap-narrow">
+    <div class="reveal">
+      <h2>Das Wichtigste auf einen Blick</h2>
+
+      <div class="facts">
+        <div class="fact">
+          <div class="fact-label">Datum</div>
+          <div class="fact-value">Freitag, 23. Oktober 2026</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Uhrzeit</div>
+          <div class="fact-value">11:00 &ndash; 16:00 Uhr</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Ort</div>
+          <div class="fact-value">Myokraft &middot; Neustraße 15 &middot; 47623 Kevelaer</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Mittagspause</div>
+          <div class="fact-value">Catering in der Myokraftbar</div>
+        </div>
+      </div>
+
+      <div class="danke-hint">
+        <strong>Anreise &amp; Parken:</strong> Parke in der Tiefgarage Luxemburger Galerie oder
+        direkt vor dem Eingang Luxemburger Galerie.
+        <a class="addr-video-link" href="https://www.youtube.com/watch?v=I_Ud7UVIZeI" target="_blank" rel="noopener">Video: So findest du unseren Eingang</a>
+      </div>
+
+      <div class="danke-actions">
+        <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Myokraft+Neustra%C3%9Fe+15+47623+Kevelaer" target="_blank" rel="noopener">Route planen</a>
+        <a class="btn btn-2" href="/">Zurück zur Event-Seite</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 345.5 109.8" role="img" aria-label="TBS Signet" style="height:40px;width:auto;">
+        <path d="M319.54,57.88c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03v-51.91h85.03Z" fill="#FFF"/>
+        <path d="M202.58,57.88c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03v-51.91h85.03,0Z" fill="#FFF"/>
+        <path d="M110.36,109.79H.03c.94-29.08,24.3-52.43,53.38-53.38,30.47-.99,55.97,22.91,56.96,53.38h0Z" fill="#FFF"/>
+        <path d="M260.46,51.91c-14.34,0-25.96-11.62-25.96-25.96S246.13,0,260.46,0h85.03v51.91h-85.03Z" fill="#FFF"/>
+        <path d="M202.58,0c14.34,0,25.96,11.62,25.96,25.96s-11.62,25.96-25.96,25.96h-85.03V0h85.03Z" fill="#FFF"/>
+        <rect width="110.39" height="51.91" fill="#FFF"/>
+      </svg>
+    </div>
+    <p class="foot-contact">
+      Fragen zum Kick-Off Event? Schreib uns eine Mail:
+      <a href="mailto:info@therapiebusinessschool.de">info@therapiebusinessschool.de</a>
+    </p>
+    <p class="foot-fine">Therapie Business School · Myokraft, Neustraße 15, 47623 Kevelaer</p>
+  </div>
+</footer>
+
+<script>
+  // Gleiche Reveal-Mechanik wie auf den übrigen Seiten, nur ohne Hero-Sonderfall:
+  // die Bestätigung selbst ist bereits per .in im Markup sichtbar, damit sie auch
+  // dann steht, wenn der IntersectionObserver nicht zum Zug kommt.
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+  }
+</script>
+
+</body>
+</html>

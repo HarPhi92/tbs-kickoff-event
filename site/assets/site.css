@@ -458,6 +458,29 @@
   }
   @media (max-width: 480px) { .field-row { grid-template-columns: 1fr; } }
 
+  /* PLZ ist immer fünfstellig und braucht deutlich weniger Platz als der Ort. */
+  .field-row-plz { grid-template-columns: 1fr 2fr; }
+  @media (max-width: 480px) { .field-row-plz { grid-template-columns: 1fr; } }
+
+  /* Fehlermeldung des Anmeldeformulars (n8n/Stripe nicht erreichbar, Pflichtfeld fehlt
+     serverseitig). Steht direkt über dem Absenden-Button, role="alert" im Markup. */
+  .form-error {
+    margin-top: 18px;
+    padding: 12px 14px;
+    border-radius: var(--radius-sm);
+    background: rgba(190, 60, 60, .12);
+    border-left: 3px solid #be3c3c;
+    font-size: .85rem;
+    line-height: 1.5;
+    color: #8f2f2f;
+  }
+  .form-error[hidden] { display: none; }
+  .pay-card .form-error {
+    background: rgba(255, 255, 255, .12);
+    border-left-color: #ffb4b4;
+    color: #ffd9d9;
+  }
+
   .consent {
     margin-top: 20px;
     display: flex;
