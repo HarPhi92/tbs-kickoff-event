@@ -475,6 +475,24 @@
     color: #8f2f2f;
   }
   .form-error[hidden] { display: none; }
+
+  /* Ausgebucht/Warteliste ist kein Fehler, sondern eine Auskunft - deshalb
+     Sand statt Rot, sonst liest es sich wie ein abgelehnter Versuch. */
+  .form-hinweis {
+    margin-top: 18px;
+    padding: 12px 14px;
+    border-radius: var(--radius-sm);
+    background: rgba(217, 201, 168, .18);
+    border-left: 3px solid var(--sand);
+    font-size: .85rem;
+    line-height: 1.55;
+    color: var(--navy);
+  }
+  .form-hinweis[hidden] { display: none; }
+  .pay-card .form-hinweis {
+    background: rgba(217, 201, 168, .16);
+    color: #F0E6D2;
+  }
   .pay-card .form-error {
     background: rgba(255, 255, 255, .12);
     border-left-color: #ffb4b4;

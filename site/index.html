@@ -325,6 +325,7 @@
             </div>
 
             <p class="form-error" id="form-kickoff-error" role="alert" hidden></p>
+            <p class="form-hinweis" id="form-kickoff-hinweis" role="status" hidden></p>
 
             <button type="submit" class="btn btn-sand btn-block" id="form-kickoff-submit" disabled>Weiter zur Bezahlung</button>
             <!-- Zwischenlösung bis TBS-Hub steht: der n8n-Workflow hinter
@@ -499,15 +500,27 @@
     var kickoffError = document.getElementById('form-kickoff-error');
     var kickoffBusy = false;
 
+    var kickoffHinweis = document.getElementById('form-kickoff-hinweis');
+
     var kickoffShowError = function (msg) {
       if (!kickoffError) return;
       kickoffError.textContent = msg;
       kickoffError.hidden = false;
     };
+    var kickoffShowHinweis = function (msg) {
+      if (!kickoffHinweis) return;
+      kickoffHinweis.textContent = msg;
+      kickoffHinweis.hidden = false;
+    };
     var kickoffClearError = function () {
-      if (!kickoffError) return;
-      kickoffError.hidden = true;
-      kickoffError.textContent = '';
+      if (kickoffError) {
+        kickoffError.hidden = true;
+        kickoffError.textContent = '';
+      }
+      if (kickoffHinweis) {
+        kickoffHinweis.hidden = true;
+        kickoffHinweis.textContent = '';
+      }
     };
 
     kickoffForm.addEventListener('submit', function (e) {
@@ -560,6 +573,19 @@
           // Bewusst kein restore(): der Button bleibt gesperrt, bis der Browser die
           // Seite verlässt - sonst lässt sich in der Wartezeit ein zweites Mal senden.
           window.location.href = res.body.checkout_url;
+          return;
+        }
+        // Ausgebucht ist kein Fehler: die Anmeldung wurde angenommen und steht auf
+        // der Warteliste. Deshalb ein eigener, ruhiger Hinweis statt der roten
+        // Fehlermeldung - und das Formular wird geschlossen, weil ein erneutes
+        // Absenden nichts ändern würde.
+        if (res.ok && res.body && res.body.ausgebucht) {
+          kickoffShowHinweis(res.body.hinweis || 'Das Event ist ausgebucht. Wir haben dich auf die Warteliste gesetzt.');
+          if (kickoffSubmit) {
+            kickoffSubmit.disabled = true;
+            kickoffSubmit.textContent = submitLabel;
+          }
+          kickoffBusy = false;
           return;
         }
         restore();
