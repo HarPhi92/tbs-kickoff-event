@@ -513,6 +513,8 @@
     flex-shrink: 0;
   }
   .consent label { font-size: .82rem; color: var(--ink-soft); line-height: 1.5; }
+  .consent + .consent { margin-top: 12px; }
+  .consent label { flex: 1; min-width: 0; overflow-wrap: break-word; }
 
   .form-card .btn { margin-top: 24px; }
 
