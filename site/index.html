@@ -320,6 +320,11 @@
               </div>
             </div>
 
+            <div class="hp-field" aria-hidden="true">
+              <label for="k-website">Website</label>
+              <input type="text" id="k-website" name="website" tabindex="-1" autocomplete="off">
+            </div>
+
             <div class="consent">
               <input type="checkbox" id="k-consent" name="consent" required>
               <label for="k-consent">Ich bin einverstanden, dass meine Angaben zur Bearbeitung dieser Anmeldung gespeichert werden.</label>
@@ -355,7 +360,7 @@
       </div>
       <p class="privacy-note">
         Mit dem Absenden akzeptierst du unsere
-        <a href="[Datenschutzerklärung-Link – einsetzen]">Datenschutzerklärung</a>.
+        <a href="https://www.therapiebusinessschool.de/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a>.
       </p>
 
       <!-- Die 10 festen Stripe-Payment-Links (einer je Personenzahl) sind abgelöst: n8n erzeugt
@@ -422,6 +427,11 @@
     <p class="foot-contact">
       Fragen zum Kick-Off Event? Schreib uns eine Mail:
       <a href="mailto:info@therapiebusinessschool.de">info@therapiebusinessschool.de</a>
+    </p>
+    <p class="foot-legal">
+      <a href="https://www.therapiebusinessschool.de/impressum" target="_blank" rel="noopener">Impressum</a>
+      <span aria-hidden="true">·</span>
+      <a href="https://www.therapiebusinessschool.de/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
     </p>
     <p class="foot-fine">Therapie Business School · Myokraft, Neustraße 15, 47623 Kevelaer</p>
   </div>
@@ -555,7 +565,17 @@
         return;
       }
 
+      // Honigtopf: Menschen sehen das Feld "website" nicht. Ist es gefüllt, war es ein Bot -
+      // nichts absenden, aber so tun als wäre alles gut.
+      var kickoffHp = kickoffForm.querySelector('input[name="website"]');
+      if (kickoffHp && kickoffHp.value) {
+        kickoffShowHinweis('Danke, deine Anmeldung ist eingegangen.');
+        if (kickoffSubmit) kickoffSubmit.disabled = true;
+        return;
+      }
+
       var data = Object.fromEntries(new FormData(kickoffForm).entries());
+      delete data.website;
       data.count = Number(data.count);
       data.event = 'kickoff-23-10-2026';
       data.submitted_at = new Date().toISOString();

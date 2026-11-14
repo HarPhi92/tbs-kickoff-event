@@ -240,6 +240,11 @@
               <textarea class="input" id="a1-message" name="message" placeholder="Möchtest du uns noch etwas mitgeben?"></textarea>
             </div>
 
+            <div class="hp-field" aria-hidden="true">
+              <label for="a1-website">Website</label>
+              <input type="text" id="a1-website" name="website" tabindex="-1" autocomplete="off">
+            </div>
+
             <div class="consent">
               <input type="checkbox" id="a1-consent" name="consent" required>
               <label for="a1-consent">Ich bin einverstanden, dass meine Angaben zur Bearbeitung dieser Anmeldung gespeichert werden.</label>
@@ -252,7 +257,7 @@
       </div>
       <p class="privacy-note">
         Mit dem Absenden akzeptierst du unsere
-        <a href="[Datenschutzerklärung-Link – einsetzen]">Datenschutzerklärung</a>.
+        <a href="https://www.therapiebusinessschool.de/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a>.
       </p>
     </div>
   </div>
@@ -307,6 +312,11 @@
     <p class="foot-contact">
       Fragen zum Partner- &amp; Expertenabend? Schreib uns eine Mail:
       <a href="mailto:info@therapiebusinessschool.de">info@therapiebusinessschool.de</a>
+    </p>
+    <p class="foot-legal">
+      <a href="https://www.therapiebusinessschool.de/impressum" target="_blank" rel="noopener">Impressum</a>
+      <span aria-hidden="true">·</span>
+      <a href="https://www.therapiebusinessschool.de/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
     </p>
     <p class="foot-fine">Therapie Business School · Myokraft, Neustraße 15, 47623 Kevelaer</p>
   </div>
@@ -399,9 +409,13 @@
       // (schreibt eine Zeile in ein Google Sheet, siehe n8n/partnerabend-signup-workflow.json).
       // Kein Zahlungsschritt danach, daher kein keepalive/Redirect nötig wie beim
       // Kick-Off-Formular - die Bestätigungsmeldung wird direkt eingeblendet.
+      // Honigtopf: Menschen sehen das Feld "website" nicht. Ist es gefüllt, war es ein Bot -
+      // nichts absenden, aber die normale Erfolgsmeldung zeigen.
+      var partnerHp = partnerForm.querySelector('input[name="website"]');
       var webhookUrl = partnerForm.dataset.signupWebhook;
-      if (webhookUrl) {
+      if (webhookUrl && !(partnerHp && partnerHp.value)) {
         var data = Object.fromEntries(new FormData(partnerForm).entries());
+        delete data.website;
         data.event = 'partnerabend-22-10-2026';
         data.submitted_at = new Date().toISOString();
         fetch(webhookUrl, {

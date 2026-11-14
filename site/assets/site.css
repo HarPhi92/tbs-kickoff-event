@@ -965,11 +965,18 @@
   footer .foot-contact { font-size: .92rem; }
   footer .foot-contact a { color: var(--sand); text-decoration: none; font-weight: 600; }
   footer .foot-contact a:hover { text-decoration: underline; }
+  footer .foot-legal { font-size: .85rem; }
+  footer .foot-legal a { color: rgba(255,255,255,.75); text-decoration: none; }
+  footer .foot-legal a:hover { color: var(--sand); text-decoration: underline; }
+  footer .foot-legal span { margin: 0 6px; color: rgba(255,255,255,.4); }
   footer .foot-fine {
     margin-top: 18px;
     font-size: .76rem;
     color: rgba(255,255,255,.4);
   }
+
+  /* Honigtopf-Feld: für Menschen unsichtbar, für Bots im DOM (bewusst nicht display:none) */
+  .hp-field { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
 
   /* ---------- Reduced motion ---------- */
   @media (prefers-reduced-motion: reduce) {
